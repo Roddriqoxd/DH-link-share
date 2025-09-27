@@ -1,6 +1,6 @@
 @use "typography" as *;
 
-.btn-primary {
+.btn--primary {
   @extend .btn-basic;
   background: var(--primary-purple-color);
   color: var(--white-color);
@@ -15,7 +15,7 @@
   }
 }
 
-.btn-secondary {
+.btn--secondary {
   @extend .btn-basic;
   border: 1px solid var(--primary-purple-color);
   background: var(--white-color);
@@ -30,7 +30,7 @@
   }
 }
 
-.btn-tab {
+.btn--tab {
   @extend .btn-basic;
   border: none;
   background-color: var(--white-color);

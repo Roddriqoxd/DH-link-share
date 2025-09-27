@@ -1,0 +1,46 @@
+@use "typography" as *;
+
+.field {
+  display: flex;
+  border-radius: 8px;
+  border: 1px var(--grey-border-color) solid;
+  background-color: var(--white-color);
+  gap: 11px;
+  align-items: center;
+  padding: 0 15px;
+
+  &__icon {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--grey-color);
+  }
+
+  &__input {
+    @include body-m;
+    color: var(--dark-grey-color);
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 12px 0;
+    background: transparent;
+
+    &::placeholder {
+      color: var(--grey-border-color);
+    }
+  }
+
+  &.error {
+    border: 1px solid var(--red-color);
+
+    .field__input {
+      color: var(--red-color);
+    }
+  }
+
+  span {
+    color: var(--red-color);
+    @include body-s;
+  }
+}

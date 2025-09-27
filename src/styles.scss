@@ -1,6 +1,8 @@
-@use 'styles/variables' as *;
+@use '@angular/material' as mat;
+@use './styles/variables' as *;
 @use './styles/typography' as *;
 @use './styles/button' as *;
+@use './styles/input' as *;
 
 body {
   margin: 0;
