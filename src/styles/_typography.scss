@@ -1,0 +1,66 @@
+$font-family-instrument-sans: 'Instrument Sans', sans-serif;
+
+@mixin heading-m {
+  font-family: $font-family-instrument-sans;
+  font-size: 32px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 150%;
+}
+
+@mixin heading-s {
+  font-family: $font-family-instrument-sans;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 150%;
+}
+
+@mixin body-m {
+  font-family: $font-family-instrument-sans;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+}
+
+@mixin body-s {
+  font-family: $font-family-instrument-sans;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+}
+
+//TODO: delete and replace this with the mixin
+.heading-m {
+  font-family: $font-family-instrument-sans;
+  font-size: 32px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 150%;
+}
+
+.heading-s {
+  font-family: $font-family-instrument-sans;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 150%;
+}
+
+.body-m {
+  font-family: $font-family-instrument-sans;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+}
+
+.body-s {
+  font-family: $font-family-instrument-sans;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+}

@@ -1,0 +1,22 @@
+$purple: #633CFF;
+$purple-hover: #BEADFF;
+$purple-light: #EFEBFF;
+$dark-grey: #333333;
+$grey: #737373;
+$grey-border: #D9D9D9;
+$light-grey: #FAFAFA;
+$white: #FFFFFF;
+$red: #FF3939;
+$font-family-instrument-sans: 'Instrument Sans', sans-serif;
+
+:root {
+  --primary-purple-color: #{$purple};
+  --purple-hover-color: #{$purple-hover};
+  --purple-light-color: #{$purple-light};
+  --dark-grey-color: #{$dark-grey};
+  --grey-color: #{$grey};
+  --grey-border-color: #{$grey-border};
+  --light-grey-color: #{$light-grey};
+  --white-color: #{$white};
+  --red-color: #{$red};
+}
