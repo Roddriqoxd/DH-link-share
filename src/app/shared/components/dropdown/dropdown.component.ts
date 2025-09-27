@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
-import {DropdownOption} from '../../core/interfaces/dropdown-option.interface';
+import {DropdownOption} from '../../../core/interfaces/dropdown-option.interface';
 
 @Component({
   selector: 'app-dropdown',

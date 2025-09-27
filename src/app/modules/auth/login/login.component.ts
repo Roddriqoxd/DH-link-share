@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {AuthFormComponent} from '../../../shared/auth-form/auth-form.component';
+import {AuthFormContainerComponent} from '../../../shared/components/auth-form/auth-form-container.component';
 import {InputIconDirective} from '../../../shared/directives/input-icon.directive';
 
 @Component({
   selector: 'app-login',
   imports: [
-    AuthFormComponent,
+    AuthFormContainerComponent,
     InputIconDirective
   ],
   templateUrl: './login.component.html',

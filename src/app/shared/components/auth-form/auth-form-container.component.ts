@@ -1,12 +1,12 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'app-auth-form',
+  selector: 'app-auth-container-form',
   imports: [],
-  templateUrl: './auth-form.component.html',
-  styleUrl: './auth-form.component.scss'
+  templateUrl: './auth-form-container.component.html',
+  styleUrl: './auth-form-container.component.scss'
 })
-export class AuthFormComponent {
+export class AuthFormContainerComponent {
   @Input() public title: string;
   @Input() public subtitle: string;
 
