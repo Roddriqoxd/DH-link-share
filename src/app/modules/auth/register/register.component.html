@@ -1,1 +1,27 @@
-<p>register works!</p>
+<app-auth-form [title]="'Create account'" [subtitle]="'Let’s get you started sharing your links!'">
+  <form class="form--container">
+    <div class="form--input">
+      <label for="email">Email address</label>
+
+      <input id="email" type="email" placeholder="e.g. alex@gmail.com" [icon]="'email'" inputIcon/>
+    </div>
+
+    <div class="form--input">
+      <label for="password">Create password</label>
+
+      <input id="password" type="password" placeholder="At least 8 characters" [icon]="'lock'" inputIcon/>
+    </div>
+
+    <div class="form--input">
+      <label for="confirm-password">confirm password</label>
+
+      <input id="confirm-password" type="password" placeholder="At least 8 characters" [icon]="'lock'" inputIcon/>
+    </div>
+
+    <h4>Password must contains at least 8 characters</h4>
+
+    <button class="btn--primary w-full">Login</button>
+
+    <h3>Already have an account? <a>Login</a></h3>
+  </form>
+</app-auth-form>
