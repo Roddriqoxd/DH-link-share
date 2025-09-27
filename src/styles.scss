@@ -3,7 +3,32 @@
 @use './styles/typography' as *;
 @use './styles/button' as *;
 @use './styles/input' as *;
+@use './styles/commons' as *;
 
 body {
+  margin: 0;
+}
+
+div, form, section {
+  box-sizing: border-box;
+}
+
+h1 {
+  @include heading-m;
+  margin: 0;
+}
+
+h2 {
+  @include heading-s;
+  margin: 0;
+}
+
+h3 {
+  @include body-m;
+  margin: 0;
+}
+
+h4, label {
+  @include body-s;
   margin: 0;
 }
