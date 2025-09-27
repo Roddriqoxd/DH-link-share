@@ -3,7 +3,7 @@
 .btn--primary {
   @extend .btn-basic;
   background: var(--primary-purple-color);
-  color: var(--white-color);
+  color: var(--white-color) !important;
   border: none;
 
   &:disabled {
@@ -19,7 +19,7 @@
   @extend .btn-basic;
   border: 1px solid var(--primary-purple-color);
   background: var(--white-color);
-  color: var(--primary-purple-color);
+  color: var(--primary-purple-color) !important;;
 
   &:hover {
     background-color: var(--purple-light-color);
@@ -34,7 +34,7 @@
   @extend .btn-basic;
   border: none;
   background-color: var(--white-color);
-  color: var(--grey-color);
+  color: var(--grey-color) !important;;
 
   &:hover {
     background-color: var(--white-color);
