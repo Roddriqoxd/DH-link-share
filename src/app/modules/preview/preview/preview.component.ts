@@ -1,8 +1,11 @@
 import {Component} from '@angular/core';
+import {PreviewPhoneComponent} from '../../../shared/components/preview-phone/preview-phone.component';
 
 @Component({
   selector: 'app-preview',
-  imports: [],
+  imports: [
+    PreviewPhoneComponent
+  ],
   templateUrl: './preview.component.html',
   styleUrl: './preview.component.scss'
 })
