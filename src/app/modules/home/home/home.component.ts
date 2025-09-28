@@ -1,22 +1,22 @@
-import {Component} from '@angular/core';
-import {StartedMessageComponent} from '../../../shared/components/started-message/started-message.component';
+import {Component, inject} from '@angular/core';
 import {PreviewPhoneComponent} from '../../../shared/components/preview-phone/preview-phone.component';
-import {LinkOptionComponent} from '../../../shared/components/link-option/link-option.component';
-import {AddedLinksComponent} from '../added-links/added-links.component';
 import {ProfileDetailsComponent} from '../profile-details/profile-details.component';
+import {AuthService} from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-home',
   imports: [
-    StartedMessageComponent,
     PreviewPhoneComponent,
-    LinkOptionComponent,
-    AddedLinksComponent,
     ProfileDetailsComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export default class HomeComponent {
+  private _authService: AuthService = inject(AuthService);
+
+  public logout(): void {
+    this._authService.logout();
+  }
 
 }
