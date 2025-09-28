@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {INITIAL_PREVIEW_STATE, PreviewState} from './models/preview-state.model';
-import {DropdownOption} from '../interfaces/dropdown-option.interface';
+import {DropdownOption, DropPosition} from '../interfaces/dropdown-option.interface';
 import {ComponentStore} from '@ngrx/component-store';
+import {moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Injectable()
 export class PreviewStore extends ComponentStore<PreviewState> {
@@ -38,5 +39,11 @@ export class PreviewStore extends ComponentStore<PreviewState> {
     links: state.links.filter(link => link.label !== value)
   }));
 
+  readonly moveLink = this.updater((state, {previousIndex, currentIndex}: DropPosition) => {
+    const links = [...state.links];
+    moveItemInArray(links, previousIndex, currentIndex);
+    return {...state, links};
+  });
+
   readonly resetState = this.updater(() => INITIAL_PREVIEW_STATE);
-  }
+}

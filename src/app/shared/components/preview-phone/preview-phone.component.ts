@@ -1,33 +1,40 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {DropdownOption} from '../../../core/interfaces/dropdown-option.interface';
+import {PreviewStateFacade} from '../../../core/state/facades/preview-state.facade';
+import {Observable} from 'rxjs';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-preview-phone',
-  imports: [],
+  imports: [
+    CommonModule,
+  ],
   templateUrl: './preview-phone.component.html',
   styleUrl: './preview-phone.component.scss'
 })
 export class PreviewPhoneComponent implements OnInit {
+  public linksState$: Observable<DropdownOption[]>;
+
+  private _previewFacade: PreviewStateFacade = inject(PreviewStateFacade);
 
   public linksOption: DropdownOption[] = [
-    {iconKey: 'pi-github', label: 'GitHub', color: 'black'},
-    {iconKey: 'pi-youtube', label: 'Youtube', color: 'red'},
-    {iconKey: 'pi-linkedin', label: 'Linkedin', color: 'blue'},
+    {iconKey: 'pi-github', label: 'GitHub', color: 'black', id: 1},
+    {iconKey: 'pi-youtube', label: 'Youtube', color: 'red', id: 2},
+    {iconKey: 'pi-linkedin', label: 'Linkedin', color: 'blue', id: 3},
   ];
 
   private _LINK_DEFAULT: DropdownOption = {
     color: 'var(--grey-border-color)',
     label: '',
     iconKey: '',
+    id: 4
   }
 
   constructor() {
-    this.linksOption.push(this._LINK_DEFAULT)
-    this.linksOption.push(this._LINK_DEFAULT)
+    this.linksState$ = this._previewFacade.selectPreviewLinks();
   }
 
   ngOnInit() {
-    // this.updateLinksOption()
   }
 
   private updateLinksOption(): void {

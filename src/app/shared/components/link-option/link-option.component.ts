@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {InputIconDirective} from '../../directives/input-icon.directive';
 import {DropdownComponent} from '../dropdown/dropdown.component';
 
@@ -12,5 +12,5 @@ import {DropdownComponent} from '../dropdown/dropdown.component';
   styleUrl: './link-option.component.scss'
 })
 export class LinkOptionComponent {
-
+  @Input() position: number = 0;
 }

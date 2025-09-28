@@ -1,3 +1,5 @@
+@let links = linksState$ | async;
+
 <section class="main--container">
   <div class="main--container__title">
     <div>
@@ -13,9 +15,16 @@
     </button>
   </div>
 
-  <div class="main--content">
-    <app-started-message></app-started-message>
-<!--    <app-link-option></app-link-option>-->
+  <div class="main--content"
+       [cdkDropListData]="links"
+       (cdkDropListDropped)="dropEvent($event)"
+       cdkDropList>
+
+    @for (link of links; track link.id) {
+      <app-link-option [position]="link.id" cdkDrag></app-link-option>
+    } @empty {
+      <app-started-message></app-started-message>
+    }
   </div>
 
   <div class="main--button__save">
