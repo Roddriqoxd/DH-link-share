@@ -26,6 +26,12 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  .auth--form__title {
+    h3 {
+      color: var(--grey-color);
+    }
+  }
 }
 
 .form--input {
