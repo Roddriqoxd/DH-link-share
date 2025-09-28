@@ -1,0 +1,53 @@
+.preview {
+  height: 100vh;
+  padding: 15px;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--light-grey-color);
+
+  &:after {
+    content: "";
+    display: block;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--primary-purple-color);
+    position: absolute;
+    height: 357px;
+    opacity: 1;
+    border-radius: 0 0 32px 32px;
+  }
+
+  .preview--header {
+    display: flex;
+    border-radius: 12px;
+    background-color: var(--white-color);
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    z-index: 1;
+  }
+
+  .home--main__container {
+    display: flex;
+    height: calc(100% - 90px);
+    background-color: var(--light-grey-color);
+    gap: 15px;
+  }
+
+  .preview--phone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: -90px;
+    z-index: 1;
+
+    app-preview-phone {
+      background-color: var(--white-color);
+      border-radius: 24px;
+    }
+  }
+}
