@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {INITIAL_PREVIEW_STATE, PreviewState} from './models/preview-state.model';
-import {DropdownOption, DropPosition} from '../interfaces/dropdown-option.interface';
+import {DropdownOptionUpdate, DropPosition, LinkData} from '../interfaces/dropdown-option.interface';
 import {ComponentStore} from '@ngrx/component-store';
 import {moveItemInArray} from '@angular/cdk/drag-drop';
 
@@ -13,37 +13,36 @@ export class PreviewStore extends ComponentStore<PreviewState> {
 
   readonly allState$ = this.select(state => state);
   readonly tabActive$ = this.select(state => state.tabActive);
-  readonly links$ = this.select(state => state.links);
+  readonly links$ = this.select(state => state.linksData);
   readonly name$ = this.select(state => state.name);
   readonly lastName$ = this.select(state => state.lastName);
   readonly email$ = this.select(state => state.email);
   readonly photoUrl$ = this.select(state => state.photoUrl)
 
-  readonly updateState = this.updater((state, updates: Partial<PreviewState>) => ({
+  readonly updatePlatformByPosition = this.updater((state, {position, dropdownOption}: DropdownOptionUpdate) => ({
+      ...state,
+        linksData: state.linksData.map((link, index) =>
+        index === position ? {link: '', platform: dropdownOption, position: 0} : link
+      ),
+    })
+  );
+
+  readonly addLink = this.updater((state, link: LinkData) => ({
     ...state,
-    ...updates
+    linksData: [...state.linksData, link]
   }));
 
-  readonly updateLinks = this.updater((state, links: DropdownOption[]) => ({
+  readonly removePlatformByPosition = this.updater((state, position: number) => ({
     ...state,
-    links
+    linksData: state.linksData.filter((link, index) => index !== position)
   }));
 
-  readonly addLink = this.updater((state, link: DropdownOption) => ({
-    ...state,
-    links: [...state.links, link]
-  }));
-
-  readonly removeLinkByValue = this.updater((state, value: string) => ({
-    ...state,
-    links: state.links.filter(link => link.label !== value)
-  }));
-
-  readonly moveLink = this.updater((state, {previousIndex, currentIndex}: DropPosition) => {
-    const links = [...state.links];
-    moveItemInArray(links, previousIndex, currentIndex);
-    return {...state, links};
-  });
+  readonly updateLinksPosition = this.updater((state, {previousIndex, currentIndex}: DropPosition) => {
+      const linksData = [...state.linksData];
+      moveItemInArray(linksData, previousIndex, currentIndex);
+      return {...state, linksData};
+    }
+  );
 
   readonly resetState = this.updater(() => INITIAL_PREVIEW_STATE);
 }

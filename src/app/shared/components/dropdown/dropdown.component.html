@@ -1,21 +1,23 @@
+@let selectedOption = selectedOption$ | async;
+
 <section class="dropdown"
          (click)="toggleDropdown()"
-         [class.active]="isOpenDropdown">
-  <i class="pi {{selectedOption.iconKey}}"></i>
+         [class.active]="isOpenDropdown()">
+  <i class="pi {{selectedOption?.iconKey || ''}}"></i>
 
   <div class="dropdown__selected">
-    <h3>{{ selectedOption.label }}</h3>
+    <h3>{{ selectedOption!.label || 'Dropdown Field Active' }}</h3>
 
     <i class="pi pi-angle-down arrow"></i>
   </div>
 
-  @if (isOpenDropdown) {
+  @if (isOpenDropdown()) {
     <div class="dropdown--option__container">
 
-      @for (option of DROPDOWN_OPTIONS; track option.label) {
+      @for (option of DROPDOWN_OPTIONS; track option.id) {
         <div class="dropdown--option"
-             [class.selected]="option.label === selectedOption.label"
-             (click)="selectOption(option)">
+             [class.selected]="option.label === selectedOption?.label"
+             (click)="selectOption(option, $event)">
           <i class="pi {{option.iconKey}}"></i>
 
           <h3>{{ option.label }}</h3>

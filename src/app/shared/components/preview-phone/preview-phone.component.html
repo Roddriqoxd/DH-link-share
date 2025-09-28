@@ -9,5 +9,29 @@
   </div>
 
   <div class="links--container">
+    @for (link of links; track link.position;) {
+      <div class="link--item" [style.backgroundColor]="link.platform.color">
+        <div class="link--item__info">
+          <i class="pi {{link.platform.iconKey}}"></i>
+
+          <h4>{{ link.platform.label }}</h4>
+        </div>
+
+        @if (link.platform.label) {
+          <i class="pi pi-arrow-right"></i>
+        }
+      </div>
+
+    } @empty {
+      <div class="link--item"></div>
+
+      <div class="link--item"></div>
+
+      <div class="link--item"></div>
+
+      <div class="link--item"></div>
+
+      <div class="link--item"></div>
+    }
   </div>
 </div>

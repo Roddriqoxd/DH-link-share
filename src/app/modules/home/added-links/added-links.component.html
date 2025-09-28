@@ -20,8 +20,8 @@
        (cdkDropListDropped)="dropEvent($event)"
        cdkDropList>
 
-    @for (link of links; track link.id) {
-      <app-link-option [position]="link.id" cdkDrag></app-link-option>
+    @for (link of links; track link.position; let index = $index) {
+      <app-link-option [position]="index" cdkDrag></app-link-option>
     } @empty {
       <app-started-message></app-started-message>
     }

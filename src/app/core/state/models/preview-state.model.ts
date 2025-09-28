@@ -1,8 +1,8 @@
-import {DropdownOption} from '../../interfaces/dropdown-option.interface';
+import {LinkData} from '../../interfaces/dropdown-option.interface';
 
 export interface PreviewState {
   tabActive: string;
-  links: DropdownOption[];
+  linksData: LinkData[];
   name: string;
   lastName: string;
   email: string;
@@ -11,7 +11,7 @@ export interface PreviewState {
 
 export const INITIAL_PREVIEW_STATE: PreviewState = {
   tabActive: 'LINKS',
-  links: [],
+  linksData: [],
   name: '',
   lastName: '',
   email: '',

@@ -39,11 +39,11 @@
 
   .links--container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 17px;
     height: 300px;
     overflow-y: auto;
+    justify-content: start;
 
     .link--item {
       width: 237px;
@@ -54,6 +54,7 @@
       align-items: center;
       justify-content: space-between;
       color: var(--white-color);
+      background-color: var(--grey-border-color);
 
       h4 {
         color: var(--white-color);
