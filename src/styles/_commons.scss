@@ -26,20 +26,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-
-  .auth--form__title {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  h1 {
-    color: var(--dark-grey-color);
-  }
-
-  h3 {
-    color: var(--grey-color);
-  }
 }
 
 .form--input {
@@ -49,5 +35,55 @@
 
   h4, label {
     color: var(--grey-color);
+  }
+}
+
+.main--container {
+  height: 100%;
+
+  .main--container__title {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h3 {
+      color: var(--grey-color);
+    }
+  }
+
+  .main--content {
+    height: calc(100% - 305px);
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+
+    app-started-message {
+      height: 100%;
+    }
+  }
+
+  .main--content__profile {
+    height: calc(100% - 305px);
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+
+    app-started-message {
+      height: 100%;
+    }
+  }
+
+  .main--button__save {
+    display: flex;
+    width: 100%;
+    height: 95px;
+    justify-content: end;
+    align-items: center;
+    border-top: var(--grey-border-color) solid 1px;
   }
 }
