@@ -4,12 +4,9 @@ import {Directive, ElementRef, inject, Input, OnDestroy, OnInit, Renderer2} from
   selector: '[inputIcon]',
 })
 export class InputIconDirective implements OnInit, OnDestroy {
-  private _el: ElementRef = inject(ElementRef)
-  private _renderer: Renderer2 = inject(Renderer2)
-
   @Input() public icon;
 
-  @Input() public set isInvalidValue(isError: boolean) {
+  @Input() public set isInvalidValue(isError: boolean | undefined) {
     if (isError) {
       this._setMessageError()
     } else {
@@ -17,8 +14,19 @@ export class InputIconDirective implements OnInit, OnDestroy {
     }
   }
 
+  @Input() public set isRequiredMessage(message: boolean) {
+    if (message) {
+      this._messageError = 'Can’t be empty'
+    } else {
+      this._messageError = 'Please check again'
+    }
+  }
+
+  private _el: ElementRef = inject(ElementRef)
+  private _renderer: Renderer2 = inject(Renderer2)
   private _inputContainerElement: HTMLDivElement | undefined;
   private _messageErrorElement: HTMLSpanElement | undefined;
+  private _messageError: string = 'Please check again';
 
   public constructor() {
     this.icon = '';
@@ -54,7 +62,7 @@ export class InputIconDirective implements OnInit, OnDestroy {
   }
 
   private _setMessageError(): void {
-    const errorMessage = this._renderer.createText('Please check again');
+    const errorMessage = this._renderer.createText(this._messageError);
 
     this._renderer.addClass(this._inputContainerElement, 'error');
     this._messageErrorElement = this._renderer.createElement('span');
@@ -64,7 +72,9 @@ export class InputIconDirective implements OnInit, OnDestroy {
   }
 
   private _removeMessageError(): void {
-    this._renderer.removeClass(this._inputContainerElement, 'error');
-    this._renderer.removeChild(this._inputContainerElement, this._messageErrorElement);
+    if (this._inputContainerElement && this._messageErrorElement) {
+      this._renderer.removeClass(this._inputContainerElement, 'error');
+      this._renderer.removeChild(this._inputContainerElement, this._messageErrorElement);
+    }
   }
 }

@@ -1,27 +1,49 @@
 <app-auth-container-form [title]="'Create account'" [subtitle]="'Let’s get you started sharing your links!'">
-  <form class="form--container">
+  <form class="form--container" [formGroup]="registerForm" (ngSubmit)="registerUser()">
     <div class="form--input">
       <label for="email">Email address</label>
 
-      <input id="email" type="email" placeholder="e.g. alex@gmail.com" [icon]="'email'" inputIcon/>
+      <input id="email"
+             type="email"
+             placeholder="e.g. alex@gmail.com"
+             [icon]="'email'"
+             [formControlName]="'email'"
+             [isRequiredMessage]="hasErrorByName('email', 'required')"
+             [isInvalidValue]="isInvalid('email')"
+             inputIcon/>
     </div>
 
     <div class="form--input">
       <label for="password">Create password</label>
 
-      <input id="password" type="password" placeholder="At least 8 characters" [icon]="'lock'" inputIcon/>
+      <input id="password"
+             type="password"
+             placeholder="At least 8 characters"
+             [icon]="'lock'"
+             [formControlName]="'password'"
+             [isRequiredMessage]="hasErrorByName('password', 'required')"
+             [isInvalidValue]="isInvalid('password')"
+             inputIcon/>
     </div>
 
     <div class="form--input">
       <label for="confirm-password">confirm password</label>
 
-      <input id="confirm-password" type="password" placeholder="At least 8 characters" [icon]="'lock'" inputIcon/>
+      <input id="confirm-password"
+             type="password"
+             placeholder="At least 8 characters"
+             [icon]="'lock'"
+             [formControlName]="'confirmPassword'"
+             [isRequiredMessage]="hasErrorByName('confirmPassword', 'required')"
+             [isInvalidValue]="isInvalid('confirmPassword')"
+             inputIcon/>
     </div>
 
     <h4>Password must contains at least 8 characters</h4>
 
     <button class="btn--primary w-full">Login</button>
 
-    <h3>Already have an account? <a>Login</a></h3>
+    <h3>Already have an account?
+      <a [routerLink]="'/auth/login'">Login</a></h3>
   </form>
 </app-auth-container-form>

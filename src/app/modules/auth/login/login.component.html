@@ -1,19 +1,35 @@
 <app-auth-container-form [title]="'Login'" [subtitle]="'Add your details below to get back into the app'">
-  <form class="form--container">
+  <form class="form--container" [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="form--input">
       <label for="email">Email address</label>
 
-      <input id="email" type="email" placeholder="e.g. alex@gmail.com" [icon]="'email'" inputIcon/>
+      <input id="email"
+             type="email"
+             placeholder="e.g. alex@gmail.com"
+             [formControlName]="'email'"
+             [icon]="'email'"
+             [isRequiredMessage]="hasErrorByName('email', 'required')"
+             [isInvalidValue]="isInvalid('email')"
+             inputIcon/>
     </div>
 
     <div class="form--input">
       <label for="password">Password</label>
 
-      <input id="password" type="password" placeholder="Enter your password" [icon]="'lock'" inputIcon/>
+      <input id="password"
+             type="password"
+             placeholder="Enter your password"
+             [formControlName]="'password'"
+             [icon]="'lock'"
+             [isRequiredMessage]="hasErrorByName('password', 'required')"
+             [isInvalidValue]="isInvalid('password')"
+             inputIcon/>
     </div>
 
     <button class="btn--primary w-full">Login</button>
 
-    <h3>Don’t have an account? <a>Create account</a></h3>
+    <h3>Don’t have an account?
+      <a [routerLink]="'/auth/register'">Create account</a>
+    </h3>
   </form>
 </app-auth-container-form>
