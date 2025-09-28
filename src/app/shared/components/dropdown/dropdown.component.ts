@@ -13,9 +13,9 @@ export class DropdownComponent {
   public selectedOption: DropdownOption;
 
   public readonly DROPDOWN_OPTIONS: DropdownOption[] = [
-    {iconKey: 'pi-github', label: 'GitHub'},
-    {iconKey: 'pi-youtube', label: 'Youtube'},
-    {iconKey: 'pi-linkedin', label: 'Linkedin'},
+    {iconKey: 'pi-github', label: 'GitHub', color: 'black'},
+    {iconKey: 'pi-youtube', label: 'Youtube', color: 'red'},
+    {iconKey: 'pi-linkedin', label: 'Linkedin', color: 'blue'},
   ];
 
   constructor() {
@@ -23,6 +23,7 @@ export class DropdownComponent {
     this.selectedOption = {
       iconKey: 'pi-link',
       label: 'Dropdown Field Active',
+      color: 'white',
     };
   }
 

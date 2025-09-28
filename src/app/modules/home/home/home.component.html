@@ -1,1 +1,36 @@
-<p>home works!</p>
+<section class="home">
+  <header class="home--header">
+    <div class="home--header__logo">
+      <img src="links-shared-logo.webp">
+
+      <h2>devLinks</h2>
+    </div>
+
+    <nav>
+      <button class="btn--tab active">
+        <i class="pi pi-link"></i>
+
+        link
+      </button>
+
+      <button class="btn--tab">
+        <i class="pi pi-user"></i>
+
+        Profile Details
+      </button>
+    </nav>
+
+    <button class="btn--secondary">Preview</button>
+  </header>
+
+  <main class="home--main__container">
+    <article class="main--preview">
+      <app-preview-phone></app-preview-phone>
+    </article>
+
+    <article class="main--custom">
+<!--      <app-added-links></app-added-links>-->
+      <app-profile-details></app-profile-details>
+    </article>
+  </main>
+</section>

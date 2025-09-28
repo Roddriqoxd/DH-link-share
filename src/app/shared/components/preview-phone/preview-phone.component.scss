@@ -1,0 +1,73 @@
+.profile {
+  width: 307px;
+  height: 631px;
+  background-image: url('/phone-preview.webp');
+  padding: 65px 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+
+  .profile--information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    .profile--photo {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background-color: var(--grey-border-color);
+    }
+
+    .profile--name {
+      width: 160px;
+      height: 16px;
+      background-color: var(--grey-border-color);
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+
+    .profile--email {
+      width: 72px;
+      height: 8px;
+      background-color: var(--grey-border-color);
+      border-radius: 10px;
+    }
+  }
+
+  .links--container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 17px;
+    height: 300px;
+    overflow-y: auto;
+
+    .link--item {
+      width: 237px;
+      height: 44px;
+      border-radius: 8px;
+      display: flex;
+      padding: 0 15px;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--white-color);
+
+      h4 {
+        color: var(--white-color);
+      }
+
+      .link--item__info {
+        display: flex;
+        gap: 10px;
+      }
+
+      .pi-arrow-right {
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+  }
+}
