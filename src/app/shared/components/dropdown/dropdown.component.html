@@ -1,0 +1,26 @@
+<section class="dropdown"
+         (click)="toggleDropdown()"
+         [class.active]="isOpenDropdown">
+  <i class="pi {{selectedOption.iconKey}}"></i>
+
+  <div class="dropdown__selected">
+    <h3>{{ selectedOption.label }}</h3>
+
+    <i class="pi pi-angle-down arrow"></i>
+  </div>
+
+  @if (isOpenDropdown) {
+    <div class="dropdown--option__container">
+
+      @for (option of DROPDOWN_OPTIONS; track option.label) {
+        <div class="dropdown--option"
+             [class.selected]="option.label === selectedOption.label"
+             (click)="selectOption(option)">
+          <i class="pi {{option.iconKey}}"></i>
+
+          <h3>{{ option.label }}</h3>
+        </div>
+      }
+    </div>
+  }
+</section>

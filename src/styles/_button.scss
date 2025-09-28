@@ -1,0 +1,75 @@
+@use "typography" as *;
+
+.btn--primary {
+  @extend .btn-basic;
+  background: var(--primary-purple-color);
+  color: var(--white-color) !important;
+  border: none;
+
+  &:disabled {
+    @extend .btn-disabled;
+  }
+
+  &:hover {
+    background-color: var(--purple-hover-color);
+  }
+}
+
+.btn--secondary {
+  @extend .btn-basic;
+  border: 1px solid var(--primary-purple-color);
+  background: var(--white-color);
+  color: var(--primary-purple-color) !important;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  &:hover {
+    background-color: var(--purple-light-color);
+  }
+
+  &:disabled {
+    @extend .btn-disabled;
+  }
+}
+
+.btn--tab {
+  @extend .btn-basic;
+  border: none;
+  background-color: var(--white-color);
+  color: var(--grey-color) !important;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  &:hover {
+    background-color: var(--white-color);
+    color: var(--primary-purple-color) !important;
+  }
+
+  &.active {
+    @extend .btn-active;
+    color: var(--primary-purple-color) !important;
+  }
+}
+
+.btn-basic {
+  @include heading-s;
+  height: 46px;
+  border-radius: 8px;
+  padding: 11px 27px;
+  cursor: pointer;
+  gap: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-disabled {
+  opacity: 25%;
+  cursor: not-allowed;
+}
+
+.btn-active {
+  background: var(--purple-light-color);
+  color: var(--primary-purple-color);
+}

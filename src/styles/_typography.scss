@@ -1,0 +1,40 @@
+$font-family-instrument-sans: 'Instrument Sans', sans-serif;
+
+@mixin heading-m {
+  font-family: $font-family-instrument-sans;
+  font-size: 32px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 150%;
+  color: var(--dark-grey-color);
+}
+
+@mixin heading-s {
+  font-family: $font-family-instrument-sans;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 150%;
+  letter-spacing: 0.2px;
+  color: var(--dark-grey-color);
+}
+
+@mixin body-m {
+  font-family: $font-family-instrument-sans;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+  letter-spacing: 0.2px;
+  color: var(--dark-grey-color);
+}
+
+@mixin body-s {
+  font-family: $font-family-instrument-sans;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 150%;
+  letter-spacing: 0.2px;
+  color: var(--dark-grey-color);
+}

@@ -1,0 +1,33 @@
+<div class="profile">
+  <div class="profile--information">
+    <div class="profile--photo"></div>
+
+    <div class="profile--name"></div>
+
+    <div class="profile--email"></div>
+  </div>
+
+  <div class="links--container">
+    @for (link of linksOption; track link.label) {
+      <div class="link--item" [style.backgroundColor]="link.color">
+        <div class="link--item__info">
+          <i class="pi {{link.iconKey}}"></i>
+
+          <h4>{{link.label}}</h4>
+        </div>
+
+        @if (link.label) {
+          <i class="pi pi-arrow-right"></i>
+        }
+      </div>
+    } @empty {
+      <div class="link--item"></div>
+
+      <div class="link--item"></div>
+
+      <div class="link--item"></div>
+
+      <div class="link--item"></div>
+    }
+  </div>
+</div>

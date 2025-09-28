@@ -1,0 +1,19 @@
+<app-auth-container-form [title]="'Login'" [subtitle]="'Add your details below to get back into the app'">
+  <form class="form--container">
+    <div class="form--input">
+      <label for="email">Email address</label>
+
+      <input id="email" type="email" placeholder="e.g. alex@gmail.com" [icon]="'email'" inputIcon/>
+    </div>
+
+    <div class="form--input">
+      <label for="password">Password</label>
+
+      <input id="password" type="password" placeholder="Enter your password" [icon]="'lock'" inputIcon/>
+    </div>
+
+    <button class="btn--primary w-full">Login</button>
+
+    <h3>Don’t have an account? <a>Create account</a></h3>
+  </form>
+</app-auth-container-form>
