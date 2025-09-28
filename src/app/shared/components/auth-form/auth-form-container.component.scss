@@ -23,29 +23,5 @@
         width: 40px;
       }
     }
-
-    .auth--form__box {
-      width: 100%;
-      border-radius: 12px;
-      background-color: var(--white-color);
-      padding: 45px 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-
-      .auth--form__title {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-      }
-
-      h1 {
-        color: var(--dark-grey-color);
-      }
-
-      h3 {
-        color: var(--grey-color);
-      }
-    }
   }
 }

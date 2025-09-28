@@ -8,16 +8,6 @@
   justify-content: space-between;
   gap: 25px;
 
-  .form--input {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-
-  h4, label {
-    color: var(--grey-color);
-  }
-
   h3 {
     color: var(--grey-color);
     text-align: center;
@@ -25,5 +15,39 @@
     a {
       color: var(--primary-purple-color);
     }
+  }
+}
+
+.auth--form__box {
+  width: 100%;
+  border-radius: 12px;
+  background-color: var(--white-color);
+  padding: 45px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .auth--form__title {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  h1 {
+    color: var(--dark-grey-color);
+  }
+
+  h3 {
+    color: var(--grey-color);
+  }
+}
+
+.form--input {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  h4, label {
+    color: var(--grey-color);
   }
 }

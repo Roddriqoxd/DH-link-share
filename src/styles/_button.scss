@@ -19,7 +19,10 @@
   @extend .btn-basic;
   border: 1px solid var(--primary-purple-color);
   background: var(--white-color);
-  color: var(--primary-purple-color) !important;;
+  color: var(--primary-purple-color) !important;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 
   &:hover {
     background-color: var(--purple-light-color);
@@ -34,19 +37,19 @@
   @extend .btn-basic;
   border: none;
   background-color: var(--white-color);
-  color: var(--grey-color) !important;;
+  color: var(--grey-color) !important;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 
   &:hover {
     background-color: var(--white-color);
-    color: var(--primary-purple-color);
-  }
-
-  &:active {
-    @extend .btn-active;
+    color: var(--primary-purple-color) !important;
   }
 
   &.active {
     @extend .btn-active;
+    color: var(--primary-purple-color) !important;
   }
 }
 
