@@ -103,3 +103,10 @@
   right: 8px;
   bottom: 17px;
 }
+
+.alert-modal {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+}

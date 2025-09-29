@@ -6,6 +6,7 @@ import {AsyncPipe} from '@angular/common';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {validateProfileInfo} from '../../../core/functions/validate-preview-state';
 import {saveProfileInfo} from '../../../core/functions/save-state-to-storage';
+import {GlobalEventsService} from '../../../core/services/global-events.service';
 
 @Component({
   selector: 'app-profile-details',
@@ -26,6 +27,7 @@ export class ProfileDetailsComponent {
 
   private _previewFacade: PreviewStateFacade = inject(PreviewStateFacade);
   private _formBuilder: FormBuilder = inject(FormBuilder);
+  private _globalEvent: GlobalEventsService = inject(GlobalEventsService);
 
   constructor() {
     this.imageSrc$ = this._previewFacade.selectPhotoUrl()
@@ -107,10 +109,18 @@ export class ProfileDetailsComponent {
       .subscribe((state) => {
         const errors = validateProfileInfo(state)
         if (errors.length) {
-          alert(errors.join('\n'));
+          this._globalEvent.openMessageModal({
+            message: errors.join(' - '),
+            isOpen: true,
+            icon: 'pi-save'
+          })
         } else {
           saveProfileInfo(state);
-          alert('Data saved successfully.');
+          this._globalEvent.openMessageModal({
+            message: 'Your changes have been successfully saved!',
+            isOpen: true,
+            icon: 'pi-save'
+          })
         }
       })
   }
