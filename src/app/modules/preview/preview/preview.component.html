@@ -2,7 +2,7 @@
   <header class="preview--header">
     <button [routerLink]="'/home'" class="btn--secondary">Back to editor</button>
 
-    <button class="btn--primary">Share Link</button>
+    <button class="btn--primary" (click)="copyUrl()">Share Link</button>
   </header>
 
   <div class="preview--phone">

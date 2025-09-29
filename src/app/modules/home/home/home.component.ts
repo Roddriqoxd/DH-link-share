@@ -22,8 +22,9 @@ import {RouterLink} from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   providers: [
-    // PreviewStore,
-    // PreviewStateFacade
+    PreviewStore,
+    PreviewStateFacade,
+    { provide: 'IDENTIFIER', useValue: 'state' }
   ]
 })
 export default class HomeComponent implements OnInit {

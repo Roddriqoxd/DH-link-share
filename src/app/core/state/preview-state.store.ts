@@ -1,18 +1,20 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {INITIAL_PREVIEW_STATE, PreviewState, TabState} from './models/preview-state.model';
 import {DropPosition, LinkData, LinkDataUpdate} from '../interfaces/dropdown-option.interface';
 import {ComponentStore} from '@ngrx/component-store';
 import {moveItemInArray} from '@angular/cdk/drag-drop';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class PreviewStore extends ComponentStore<PreviewState> {
 
-  constructor() {
-    const storedState = localStorage.getItem('state');
+  constructor(@Inject('IDENTIFIER') private _identifierId: string) {
+    const storedState = localStorage.getItem(_identifierId);
     const INITIAL_STATE: PreviewState = storedState
       ? JSON.parse(storedState)
       : INITIAL_PREVIEW_STATE;
 
+    INITIAL_STATE.tabActive = TabState.LINKS
+    INITIAL_STATE.photoUrl = `www.${_identifierId}.com`
     super(INITIAL_STATE);
   }
 
