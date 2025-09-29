@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {AuthFormContainerComponent} from '../../../shared/components/auth-form/auth-form-container.component';
 import {InputIconDirective} from '../../../shared/directives/input-icon.directive';
 import {RouterLink} from '@angular/router';
@@ -16,7 +16,8 @@ import {take} from 'rxjs';
     ReactiveFormsModule
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class LoginComponent {
   private _formBuilder: FormBuilder = inject(FormBuilder);

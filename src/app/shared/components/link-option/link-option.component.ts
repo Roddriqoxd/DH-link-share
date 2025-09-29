@@ -1,4 +1,4 @@
-import {Component, inject, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Input} from '@angular/core';
 import {InputIconDirective} from '../../directives/input-icon.directive';
 import {DropdownComponent} from '../dropdown/dropdown.component';
 import {PreviewStateFacade} from '../../../core/state/facades/preview-state.facade';
@@ -15,7 +15,8 @@ import {take} from 'rxjs';
     ReactiveFormsModule
   ],
   templateUrl: './link-option.component.html',
-  styleUrl: './link-option.component.scss'
+  styleUrl: './link-option.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LinkOptionComponent {
   @Input() set position(position: number) {

@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
 import {PreviewPhoneComponent} from '../../../shared/components/preview-phone/preview-phone.component';
 import {AuthService} from '../../../core/services/auth.service';
 import {AddedLinksComponent} from '../added-links/added-links.component';
@@ -25,7 +25,8 @@ import {RouterLink} from '@angular/router';
     PreviewStore,
     PreviewStateFacade,
     { provide: 'IDENTIFIER', useValue: 'state' }
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class HomeComponent implements OnInit {
   private _authService: AuthService = inject(AuthService);

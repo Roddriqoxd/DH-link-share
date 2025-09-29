@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {InputIconDirective} from '../../../shared/directives/input-icon.directive';
 import {PreviewStateFacade} from '../../../core/state/facades/preview-state.facade';
 import {combineLatest, map, Observable, take} from 'rxjs';
@@ -19,7 +19,8 @@ import {GlobalEventsService} from '../../../core/services/global-events.service'
   styleUrl: './profile-details.component.scss',
   host: {
     style: 'height: 100%',
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileDetailsComponent {
   public imageSrc$: Observable<string>;

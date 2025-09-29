@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {AuthFormContainerComponent} from "../../../shared/components/auth-form/auth-form-container.component";
 import {InputIconDirective} from "../../../shared/directives/input-icon.directive";
 import {Router, RouterLink} from '@angular/router';
@@ -25,7 +25,8 @@ import {take} from 'rxjs';
     ReactiveFormsModule
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class RegisterComponent {
   private _formBuilder: FormBuilder = inject(FormBuilder);
