@@ -64,9 +64,9 @@
                (blur)="saveInputValue('lastName')"
                inputIcon>
 
-        <!--        @if (hasErrorByName('required')) {-->
-        <!--          <h4 class="error&#45;&#45;input">Can’t be empty</h4>-->
-        <!--        }-->
+        @if (hasErrorByName('lastName', 'required')) {
+          <h4 class="error--input">Can’t be empty</h4>
+        }
       </div>
 
       <div class="profile--field">
@@ -80,14 +80,18 @@
                (blur)="saveInputValue('email')"
                inputIcon>
 
-        <!--        @if (hasErrorByName('email','required')) {-->
-        <!--          <h4 class="error&#45;&#45;input">Can’t be empty</h4>-->
-        <!--        }-->
+        @if (hasErrorByName('email', 'required')) {
+          <h4 class="error--input">Can’t be empty</h4>
+        }
+
+        @if (hasErrorByName('email', 'email')) {
+          <h4 class="error--input">Invalid email</h4>
+        }
       </div>
     </form>
   </div>
 
   <div class="main--button__save">
-    <button class="btn--primary">Save</button>
+    <button class="btn--primary" (click)="saveProfileInfo()">Save</button>
   </div>
 </section>

@@ -20,5 +20,5 @@ export const INITIAL_PREVIEW_STATE: PreviewState = {
   name: '',
   lastName: '',
   email: '',
-  photoUrl: ''
+  photoUrl: '',
 };

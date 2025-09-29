@@ -8,7 +8,12 @@ import {moveItemInArray} from '@angular/cdk/drag-drop';
 export class PreviewStore extends ComponentStore<PreviewState> {
 
   constructor() {
-    super(INITIAL_PREVIEW_STATE);
+    const storedState = localStorage.getItem('state');
+    const INITIAL_STATE: PreviewState = storedState
+      ? JSON.parse(storedState)
+      : INITIAL_PREVIEW_STATE;
+
+    super(INITIAL_STATE);
   }
 
   readonly allState$ = this.select(state => state);

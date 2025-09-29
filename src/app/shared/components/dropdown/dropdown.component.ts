@@ -40,6 +40,8 @@ export class DropdownComponent {
     {iconKey: 'pi-github', label: 'GitHub', color: 'black'},
     {iconKey: 'pi-youtube', label: 'Youtube', color: 'red'},
     {iconKey: 'pi-linkedin', label: 'Linkedin', color: 'blue'},
+    {iconKey: 'pi-twitter', label: 'Twitter', color: 'black'},
+    {iconKey: 'pi-twitch', label: 'Twitch', color: '#8b45f7'},
   ];
 
   constructor() {

@@ -4,7 +4,7 @@ import {AuthService} from '../../../core/services/auth.service';
 import {AddedLinksComponent} from '../added-links/added-links.component';
 import {PreviewStore} from '../../../core/state/preview-state.store';
 import {PreviewStateFacade} from '../../../core/state/facades/preview-state.facade';
-import {Observable} from 'rxjs';
+import {Observable, startWith} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 import {TabState} from '../../../core/state/models/preview-state.model';
 import {ProfileDetailsComponent} from '../profile-details/profile-details.component';
@@ -35,17 +35,10 @@ export default class HomeComponent implements OnInit {
   public TAB_STATE: typeof TabState = TabState;
 
   constructor() {
-    this.tabState$ = this._previewFacade.selectTabState();
+    this.tabState$ = this._previewFacade.selectTabState().pipe(startWith(TabState.LINKS));
   }
 
   ngOnInit() {
-    this.tabState$.subscribe(tab => {
-      if (tab === this.TAB_STATE.LINKS) {
-
-      } else if (tab === this.TAB_STATE.PROFILE) {
-
-      }
-    })
   }
 
   public logout(): void {

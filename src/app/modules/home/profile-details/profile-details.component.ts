@@ -4,6 +4,8 @@ import {PreviewStateFacade} from '../../../core/state/facades/preview-state.faca
 import {combineLatest, map, Observable, take} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {validateLinks, validateProfileInfo} from '../../../core/functions/validate-preview-state';
+import {saveProfileInfo, saveTabsToStorage} from '../../../core/functions/save-state-to-storage';
 
 @Component({
   selector: 'app-profile-details',
@@ -97,5 +99,19 @@ export class ProfileDetailsComponent {
         this._previewFacade.setName(this.profileForm.get(controlName)?.value);
         break;
     }
+  }
+
+  public saveProfileInfo(): void {
+    this._previewFacade.selectState()
+      .pipe(take(1))
+      .subscribe((state) => {
+        const errors = validateProfileInfo(state)
+        if (errors.length) {
+          alert(errors.join('\n'));
+        } else {
+          saveProfileInfo(state);
+          alert('Data saved successfully.');
+        }
+      })
   }
 }

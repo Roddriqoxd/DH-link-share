@@ -2,7 +2,6 @@
   @extend .dropdown-option-base;
   border: 1px solid var(--grey-border-color);
   position: relative;
-  z-index: 2;
 
   .dropdown__selected {
     display: flex;
@@ -37,6 +36,7 @@
     width: 100%;
     border: 1px solid var(--grey-border-color);
     color: var(--dark-grey-color);
+    z-index: 2;
 
     .dropdown--option {
       @extend .dropdown-option-base;
