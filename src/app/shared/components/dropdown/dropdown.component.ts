@@ -8,7 +8,6 @@ import {
   signal,
   WritableSignal
 } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
 import {Platform} from '../../../core/interfaces/dropdown-option.interface';
 import {PreviewStateFacade} from '../../../core/state/facades/preview-state.facade';
 import {map, Observable} from 'rxjs';
@@ -16,7 +15,7 @@ import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-dropdown',
-  imports: [MatIconModule, AsyncPipe],
+  imports: [AsyncPipe],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

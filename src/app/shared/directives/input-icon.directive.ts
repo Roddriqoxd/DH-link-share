@@ -45,20 +45,18 @@ export class InputIconDirective implements OnInit, OnDestroy {
 
   private _initialize(): void {
     const inputElement = this._el.nativeElement;
-    const iconElement = this._renderer.createElement('mat-icon');
-    const iconName = this._renderer.createText(this.icon);
     const parentElement = inputElement.parentNode;
 
     this._renderer.addClass(this._inputContainerElement, 'field');
-    this._renderer.addClass(iconElement, 'field__icon');
-    this._renderer.addClass(iconElement, 'mat-icon');
-    this._renderer.addClass(iconElement, 'notranslate');
-    this._renderer.addClass(iconElement, 'material-icons');
-    this._renderer.addClass(iconElement, 'mat-icon-no-color');
-    this._renderer.appendChild(iconElement, iconName);
     this._renderer.addClass(inputElement, 'field__input');
     this._renderer.insertBefore(parentElement, this._inputContainerElement, inputElement);
-    this._renderer.appendChild(this._inputContainerElement, iconElement);
+    if (this.icon) {
+      const iconElement = this._renderer.createElement('i');
+      this._renderer.addClass(iconElement, 'field__icon');
+      this._renderer.addClass(iconElement, 'pi');
+      this._renderer.addClass(iconElement, this.icon);
+      this._renderer.appendChild(this._inputContainerElement, iconElement);
+    }
     this._renderer.appendChild(this._inputContainerElement, inputElement);
   }
 
