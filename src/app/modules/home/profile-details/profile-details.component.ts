@@ -4,8 +4,8 @@ import {PreviewStateFacade} from '../../../core/state/facades/preview-state.faca
 import {combineLatest, map, Observable, take} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {validateLinks, validateProfileInfo} from '../../../core/functions/validate-preview-state';
-import {saveProfileInfo, saveTabsToStorage} from '../../../core/functions/save-state-to-storage';
+import {validateProfileInfo} from '../../../core/functions/validate-preview-state';
+import {saveProfileInfo} from '../../../core/functions/save-state-to-storage';
 
 @Component({
   selector: 'app-profile-details',
@@ -60,8 +60,8 @@ export class ProfileDetailsComponent {
 
       if (base64) {
         this._previewFacade.setPhotoUrl('')
-        localStorage.setItem('imageSrc', base64 as string);
-        this._previewFacade.setPhotoUrl('imageSrc')
+        localStorage.setItem('www.state.com', base64 as string);
+        this._previewFacade.setPhotoUrl('www.state.com')
       }
     }
   }

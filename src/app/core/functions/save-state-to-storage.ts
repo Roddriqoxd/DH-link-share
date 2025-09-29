@@ -16,7 +16,15 @@ export function saveProfileInfo(state: PreviewState): void {
   if (stateStorage) {
     const oldState = JSON.parse(stateStorage);
     oldState.linksData.length && (newState.linksData = oldState.linksData);
-
   }
   localStorage.setItem('state', JSON.stringify(newState));
+}
+
+export function saveStateToStorageByIdentifier(identifier: string): void {
+  const stateStorage = localStorage.getItem('state');
+  const imageURL = localStorage.getItem('www.state.com');
+  if (stateStorage && imageURL) {
+    localStorage.setItem(identifier, stateStorage);
+    localStorage.setItem(`www.${identifier}.com`, imageURL);
+  }
 }

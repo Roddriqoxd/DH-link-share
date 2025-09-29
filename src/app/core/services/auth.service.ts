@@ -13,17 +13,17 @@ export class AuthService {
   constructor() {}
 
   public isLoggedIn(): boolean {
-    return !!localStorage.getItem('loggedIn')
+    return !!localStorage.getItem('user')
   }
 
   public login(authData: AuthUser): Observable<boolean> {
     return of(authData)
       .pipe(map(user => {
-        const users = localStorage.getItem('user') || '[]';
+        const users = localStorage.getItem('usersList') || '[]';
         const oldUsers: AuthUser[] = JSON.parse(users);
 
         if (oldUsers.some(oldUser => oldUser.email === user.email && oldUser.password === user.password)) {
-          localStorage.setItem('loggedIn', JSON.stringify(user.email))
+          localStorage.setItem('user', JSON.stringify(user.email))
           this._redirectUrl ? this._router.navigateByUrl(this._redirectUrl) : this._router.navigate(['/']);
           this._redirectUrl = null;
           return true;
@@ -36,19 +36,19 @@ export class AuthService {
   public createNewUser(authData: AuthUser): Observable<boolean> {
     return of(authData)
       .pipe(map(user => {
-        const users = localStorage.getItem('user') || '[]';
+        const users = localStorage.getItem('usersList') || '[]';
         const oldUsers: AuthUser[] = JSON.parse(users);
         if (oldUsers.some(oldUser => oldUser.email === user.email)) {
           return false
         }
         oldUsers.push(user);
-        localStorage.setItem('user', JSON.stringify(oldUsers))
+        localStorage.setItem('usersList', JSON.stringify(oldUsers))
         return true
       }));
   }
 
   public logout(): void {
-    localStorage.removeItem('loggedIn')
+    localStorage.removeItem('user')
     this._router.navigate(['/auth'], {replaceUrl: true});
   }
 
