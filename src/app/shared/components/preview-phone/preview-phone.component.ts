@@ -1,4 +1,4 @@
-import {Component, inject, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, Input} from '@angular/core';
 import {LinkData} from '../../../core/interfaces/dropdown-option.interface';
 import {PreviewStateFacade} from '../../../core/state/facades/preview-state.facade';
 import {map, Observable} from 'rxjs';
@@ -10,7 +10,8 @@ import {CommonModule} from '@angular/common';
     CommonModule,
   ],
   templateUrl: './preview-phone.component.html',
-  styleUrl: './preview-phone.component.scss'
+  styleUrl: './preview-phone.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PreviewPhoneComponent {
   @Input() previewView: boolean;

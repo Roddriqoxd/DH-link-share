@@ -8,6 +8,7 @@ import {LinkOptionComponent} from '../../../shared/components/link-option/link-o
 import {CdkDragDrop, DragDropModule} from '@angular/cdk/drag-drop';
 import {validateLinks} from '../../../core/functions/validate-preview-state';
 import {saveTabsToStorage} from '../../../core/functions/save-state-to-storage';
+import {GlobalEventsService} from '../../../core/services/global-events.service';
 
 @Component({
   selector: 'app-added-links',
@@ -24,9 +25,10 @@ import {saveTabsToStorage} from '../../../core/functions/save-state-to-storage';
   }
 })
 export class AddedLinksComponent implements OnInit {
-  private _previewFacade: PreviewStateFacade = inject(PreviewStateFacade);
-
   public linksState$: Observable<LinkData[]>;
+
+  private _previewFacade: PreviewStateFacade = inject(PreviewStateFacade);
+  private _globalEvent: GlobalEventsService = inject(GlobalEventsService);
 
   constructor() {
     this.linksState$ = this._previewFacade.selectPreviewLinks().pipe(startWith([]));
@@ -68,10 +70,19 @@ export class AddedLinksComponent implements OnInit {
       .subscribe((state) => {
         const errors = validateLinks(state.linksData)
         if (errors.length) {
-          alert(errors.join('\n'));
+          saveTabsToStorage(state)
+          this._globalEvent.openMessageModal({
+            message: errors.join(' - '),
+            isOpen: true,
+            icon: 'pi-save'
+          })
         } else {
           saveTabsToStorage(state)
-          alert('Data saved successfully.');
+          this._globalEvent.openMessageModal({
+            message: 'Your changes have been successfully saved!',
+            isOpen: true,
+            icon: 'pi-save'
+          })
         }
       })
   }

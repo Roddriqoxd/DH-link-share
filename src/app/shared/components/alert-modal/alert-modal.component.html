@@ -1,0 +1,7 @@
+@if (messageModalState().isOpen) {
+  <section class="alert--container">
+    <i class="pi {{messageModalState().icon}}"></i>
+
+    <h2>{{messageModalState().message}}</h2>
+  </section>
+}
