@@ -46,7 +46,7 @@ export class LinkOptionComponent {
   }
 
   public removeItem(): void {
-    this._previewFacade.removePlatformByPosition(this.position)
+    this._previewFacade.removePlatformByPosition(this.index)
   }
 
   public updateLink(): void {

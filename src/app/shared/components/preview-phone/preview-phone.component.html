@@ -4,7 +4,7 @@
 @let lastName = lastName$ | async;
 @let email = email$ | async;
 
-<div class="profile">
+<div class="profile" [class.preview--view]="previewView">
   <div class="profile--information">
 
     @if (image) {
@@ -26,7 +26,7 @@
     }
   </div>
 
-  <div class="links--container">
+  <div class="links--container" [class.disabled--height]="previewView">
     @for (link of links; track index; let index = $index) {
       <div class="link--item" [style.backgroundColor]="link.platform.color">
         <div class="link--item__info">

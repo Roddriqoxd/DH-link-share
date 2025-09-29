@@ -35,7 +35,6 @@ export class ProfileDetailsComponent {
 
     ]).pipe(take(1))
       .subscribe(([name, lastName, email]) => {
-        debugger
         this.profileForm = this._formBuilder.group({
           firsName: [name, [Validators.required, Validators.minLength(3)]],
           lastName: [lastName, [Validators.required, Validators.minLength(3)]],

@@ -8,6 +8,12 @@
   align-items: center;
   gap: 50px;
 
+  &.preview--view {
+    background-image: none;
+    height: auto;
+    max-height: calc(100vh - 50px);
+  }
+
   .profile--information {
     display: flex;
     flex-direction: column;
@@ -38,12 +44,18 @@
   }
 
   .links--container {
-    display: flex;
+    display: grid;
     flex-direction: column;
     gap: 17px;
     height: 300px;
     overflow-y: auto;
-    justify-content: start;
+    grid-auto-rows: 38px;
+
+    &.disabled--height {
+      height: auto;
+      background-image: none;
+      padding: 10px 0;
+    }
 
     .link--item {
       width: 237px;
@@ -55,6 +67,7 @@
       justify-content: space-between;
       color: var(--white-color);
       background-color: var(--grey-border-color);
+      cursor: pointer;
 
       h4 {
         color: var(--white-color);
