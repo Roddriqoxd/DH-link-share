@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 import {TabState} from '../../../core/state/models/preview-state.model';
 import {ProfileDetailsComponent} from '../profile-details/profile-details.component';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +16,14 @@ import {ProfileDetailsComponent} from '../profile-details/profile-details.compon
     PreviewPhoneComponent,
     AddedLinksComponent,
     AsyncPipe,
-    ProfileDetailsComponent
+    ProfileDetailsComponent,
+    RouterLink
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   providers: [
-    PreviewStore,
-    PreviewStateFacade
+    // PreviewStore,
+    // PreviewStateFacade
   ]
 })
 export default class HomeComponent implements OnInit {

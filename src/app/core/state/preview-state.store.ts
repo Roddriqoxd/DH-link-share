@@ -4,7 +4,7 @@ import {DropPosition, LinkData, LinkDataUpdate} from '../interfaces/dropdown-opt
 import {ComponentStore} from '@ngrx/component-store';
 import {moveItemInArray} from '@angular/cdk/drag-drop';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class PreviewStore extends ComponentStore<PreviewState> {
 
   constructor() {

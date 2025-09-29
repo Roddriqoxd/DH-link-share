@@ -1,15 +1,33 @@
 @let links = linksState$ | async;
+@let image = imageSrc$ | async;
+@let firstName = firstname$ | async;
+@let lastName = lastName$ | async;
+@let email = email$ | async;
+
 <div class="profile">
   <div class="profile--information">
-    <div class="profile--photo"></div>
 
-    <div class="profile--name"></div>
+    @if (image) {
+      <img [src]="image" class="profile--photo">
+    } @else {
+      <div class="profile--photo"></div>
+    }
 
-    <div class="profile--email"></div>
+    @if (firstName || lastName) {
+      <h2>{{firstName}} {{lastName}}</h2>
+    } @else {
+      <div class="profile--name"></div>
+    }
+
+    @if (email) {
+      <h4>{{ email }}</h4>
+    } @else {
+      <div class="profile--email"></div>
+    }
   </div>
 
   <div class="links--container">
-    @for (link of links; track link.position;) {
+    @for (link of links; track index; let index = $index) {
       <div class="link--item" [style.backgroundColor]="link.platform.color">
         <div class="link--item__info">
           <i class="pi {{link.platform.iconKey}}"></i>

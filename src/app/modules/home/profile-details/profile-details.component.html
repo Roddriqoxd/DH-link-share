@@ -1,3 +1,5 @@
+@let imageSrc = imageSrc$ | async;
+
 <section class="main--container">
   <div class="main--container__title">
     <div>
@@ -11,36 +13,78 @@
     <div class="profile--img__content">
       <h3>Profile picture</h3>
 
-      <div class="profile--input__container">
+      <div class="profile--input__container" (click)="fileInput.click()">
         <div class="profile--input__image">
-          <i class="pi pi-image"></i>
+          <div class="profile--input__upload">
+            <i class="pi pi-image"></i>
+            <h2>+ Upload Image</h2>
+          </div>
 
-          <h2>+ Upload Image</h2>
+          @if (imageSrc) {
+            <img [src]="imageSrc"
+                 alt="Profile Image"/>
+          }
         </div>
 
         <h4>Image must be below 1024x1024px. Use PNG or JPG format.</h4>
+
+        <input
+          #fileInput
+          type="file"
+          accept="image/png, image/jpeg"
+          (change)="saveImage($event)"/>
       </div>
     </div>
 
-    <div class="profile--form__content">
+    <form class="profile--form__content" [formGroup]="profileForm">
       <div class="profile--field">
         <h3>First name*</h3>
 
-        <input type="text" placeholder="e.g. John" inputIcon>
+        <input type="text"
+               placeholder="e.g. John"
+               [isInvalidValue]="isInvalid('firsName')"
+               [formControlName]="'firsName'"
+               [disabledMessageError]="true"
+               (blur)="saveInputValue('firsName')"
+               inputIcon>
+
+        @if (hasErrorByName('firsName', 'required')) {
+          <h4 class="error--input">Can’t be empty</h4>
+        }
       </div>
 
       <div class="profile--field">
         <h3>Last name*</h3>
 
-        <input type="text" placeholder="e.g. Appleseed" inputIcon>
+        <input type="text"
+               placeholder="e.g. Appleseed"
+               [isInvalidValue]="isInvalid('lastName')"
+               [formControlName]="'lastName'"
+               [disabledMessageError]="true"
+               (blur)="saveInputValue('lastName')"
+               inputIcon>
+
+        <!--        @if (hasErrorByName('required')) {-->
+        <!--          <h4 class="error&#45;&#45;input">Can’t be empty</h4>-->
+        <!--        }-->
       </div>
 
       <div class="profile--field">
         <h3>Email</h3>
 
-        <input type="text" placeholder="e.g. email@example.com" inputIcon>
+        <input type="text"
+               placeholder="e.g. email@example.com"
+               [isInvalidValue]="isInvalid('email')"
+               [formControlName]="'email'"
+               [disabledMessageError]="true"
+               (blur)="saveInputValue('email')"
+               inputIcon>
+
+        <!--        @if (hasErrorByName('email','required')) {-->
+        <!--          <h4 class="error&#45;&#45;input">Can’t be empty</h4>-->
+        <!--        }-->
       </div>
-    </div>
+    </form>
   </div>
 
   <div class="main--button__save">

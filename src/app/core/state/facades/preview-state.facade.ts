@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {PreviewStore} from '../preview-state.store';
 import {map, Observable} from 'rxjs';
-import {LinkDataUpdate, DropPosition, LinkData} from '../../interfaces/dropdown-option.interface';
+import {DropPosition, LinkData, LinkDataUpdate} from '../../interfaces/dropdown-option.interface';
 import {PreviewState, TabState} from '../models/preview-state.model';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class PreviewStateFacade {
 
   constructor(private _previewStore: PreviewStore) {
@@ -12,6 +12,38 @@ export class PreviewStateFacade {
 
   public selectTabState(): Observable<TabState> {
     return this._previewStore.tabActive$
+  }
+
+  public selectName(): Observable<string> {
+    return this._previewStore.name$;
+  }
+
+  public selectLastName(): Observable<string> {
+    return this._previewStore.lastName$;
+  }
+
+  public selectEmail(): Observable<string> {
+    return this._previewStore.email$;
+  }
+
+  public selectPhotoUrl(): Observable<string> {
+    return this._previewStore.photoUrl$;
+  }
+
+  public setName(name: string): void {
+    this._previewStore.setName(name);
+  }
+
+  public setLastName(lastName: string): void {
+    this._previewStore.setLastName(lastName);
+  }
+
+  public setEmail(email: string): void {
+    this._previewStore.setEmail(email);
+  }
+
+  public setPhotoUrl(photoUrl: string): void {
+    this._previewStore.setPhotoUrl(photoUrl);
   }
 
   public selectState(): Observable<PreviewState> {
