@@ -4,7 +4,8 @@ import {Directive, ElementRef, inject, Input, OnDestroy, OnInit, Renderer2} from
   selector: '[inputIcon]',
 })
 export class InputIconDirective implements OnInit, OnDestroy {
-  @Input() public icon;
+  @Input() public icon: string;
+  @Input() public disabledMessageError!: boolean;
 
   @Input() public set isInvalidValue(isError: boolean | undefined) {
     if (isError) {
@@ -62,18 +63,21 @@ export class InputIconDirective implements OnInit, OnDestroy {
   }
 
   private _setMessageError(): void {
-    const errorMessage = this._renderer.createText(this._messageError);
-
     this._renderer.addClass(this._inputContainerElement, 'error');
-    this._messageErrorElement = this._renderer.createElement('span');
-    this._renderer.addClass(this._messageErrorElement, 'error__message');
-    this._renderer.appendChild(this._messageErrorElement, errorMessage);
-    this._renderer.appendChild(this._inputContainerElement, this._messageErrorElement);
+    if (!this.disabledMessageError) {
+      const errorMessage = this._renderer.createText(this._messageError);
+
+      this._messageErrorElement = this._renderer.createElement('span');
+      this._renderer.addClass(this._messageErrorElement, 'error__message');
+      this._renderer.appendChild(this._messageErrorElement, errorMessage);
+      this._renderer.appendChild(this._inputContainerElement, this._messageErrorElement);
+    }
   }
 
   private _removeMessageError(): void {
+    this._renderer.removeClass(this._inputContainerElement, 'error');
+
     if (this._inputContainerElement && this._messageErrorElement) {
-      this._renderer.removeClass(this._inputContainerElement, 'error');
       this._renderer.removeChild(this._inputContainerElement, this._messageErrorElement);
     }
   }

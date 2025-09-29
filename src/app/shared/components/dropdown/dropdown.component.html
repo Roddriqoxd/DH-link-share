@@ -14,7 +14,7 @@
   @if (isOpenDropdown()) {
     <div class="dropdown--option__container">
 
-      @for (option of DROPDOWN_OPTIONS; track option.id) {
+      @for (option of DROPDOWN_OPTIONS; track option.label) {
         <div class="dropdown--option"
              [class.selected]="option.label === selectedOption?.label"
              (click)="selectOption(option, $event)">

@@ -1,7 +1,12 @@
 import {LinkData} from '../../interfaces/dropdown-option.interface';
 
+export enum TabState {
+  LINKS = 'LINKS',
+  PROFILE = 'PROFILE',
+}
+
 export interface PreviewState {
-  tabActive: string;
+  tabActive: TabState;
   linksData: LinkData[];
   name: string;
   lastName: string;
@@ -10,7 +15,7 @@ export interface PreviewState {
 }
 
 export const INITIAL_PREVIEW_STATE: PreviewState = {
-  tabActive: 'LINKS',
+  tabActive: TabState.LINKS,
   linksData: [],
   name: '',
   lastName: '',

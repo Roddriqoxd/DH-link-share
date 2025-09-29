@@ -40,6 +40,7 @@
   display: flex;
   flex-direction: column;
   gap: 3px;
+  position: relative;
 
   h4, label {
     color: var(--grey-color);
@@ -94,4 +95,11 @@
     align-items: center;
     border-top: var(--grey-border-color) solid 1px;
   }
+}
+
+.error--input {
+  color: var(--red-color) !important;
+  position: absolute;
+  right: 8px;
+  bottom: 17px;
 }

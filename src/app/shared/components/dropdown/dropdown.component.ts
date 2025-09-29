@@ -19,6 +19,7 @@ import {AsyncPipe} from '@angular/common';
   imports: [MatIconModule, AsyncPipe],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent {
   @Input() set position(position: number) {
@@ -36,9 +37,9 @@ export class DropdownComponent {
   private _previewFacade: PreviewStateFacade = inject(PreviewStateFacade);
 
   public readonly DROPDOWN_OPTIONS: Platform[] = [
-    {iconKey: 'pi-github', label: 'GitHub', color: 'black', id: 1},
-    {iconKey: 'pi-youtube', label: 'Youtube', color: 'red', id: 2},
-    {iconKey: 'pi-linkedin', label: 'Linkedin', color: 'blue', id: 3},
+    {iconKey: 'pi-github', label: 'GitHub', color: 'black'},
+    {iconKey: 'pi-youtube', label: 'Youtube', color: 'red'},
+    {iconKey: 'pi-linkedin', label: 'Linkedin', color: 'blue'},
   ];
 
   constructor() {

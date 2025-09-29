@@ -32,10 +32,10 @@ export class AddedLinksComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._previewFacade.selectPreviewLinks()
-      .subscribe(previewLinks => {
-        // TODO: Delete this
-        console.log(previewLinks)
+    // TODO: Delete this
+    this._previewFacade.selectState()
+      .subscribe(data => {
+        console.log(data)
       });
   }
 
@@ -47,12 +47,9 @@ export class AddedLinksComponent implements OnInit {
           iconKey: '',
           label: '',
           color: '',
-          id: 0
         },
-        position: this._index
       }
     )
-    this._index++
   }
 
   public dropEvent(linkEvent: CdkDragDrop<LinkData[] | null, any>): void {

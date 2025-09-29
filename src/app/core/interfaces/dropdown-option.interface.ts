@@ -2,7 +2,6 @@ export interface Platform {
   iconKey: string;
   label: string;
   color: string;
-  id: number;
 }
 
 export interface DropPosition {
@@ -10,13 +9,13 @@ export interface DropPosition {
   currentIndex: number;
 }
 
-export interface DropdownOptionUpdate {
-  dropdownOption: Platform;
+export interface LinkDataUpdate {
+  platform?: Platform;
+  link?: string;
   position: number;
 }
 
 export interface LinkData {
   platform: Platform;
   link: string;
-  position: number;
 }

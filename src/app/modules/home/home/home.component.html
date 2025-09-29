@@ -1,3 +1,5 @@
+@let tabState = tabState$ | async;
+
 <section class="home">
   <header class="home--header">
     <div class="home--header__logo">
@@ -7,13 +9,17 @@
     </div>
 
     <nav>
-      <button class="btn--tab active">
+      <button class="btn--tab"
+              [class.active]="tabState === TAB_STATE.LINKS"
+              (click)="changeView(TAB_STATE.LINKS)">
         <i class="pi pi-link"></i>
 
         link
       </button>
 
-      <button class="btn--tab">
+      <button class="btn--tab"
+              [class.active]="tabState === TAB_STATE.PROFILE"
+              (click)="changeView(TAB_STATE.PROFILE)">
         <i class="pi pi-user"></i>
 
         Profile Details
@@ -34,8 +40,18 @@
     </article>
 
     <article class="main--custom">
-      <app-added-links></app-added-links>
-      <!--      <app-profile-details></app-profile-details>-->
+
+      @switch (tabState) {
+        @case (TAB_STATE.LINKS) {
+          <app-added-links></app-added-links>
+        }
+        @case (TAB_STATE.PROFILE) {
+          <app-profile-details></app-profile-details>
+        }
+        @default {
+          <p>Selecciona una vista</p>
+        }
+      }
     </article>
   </main>
 </section>
