@@ -1,38 +1,59 @@
-import {Component} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  signal,
+  WritableSignal
+} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
-import {DropdownOption} from '../../../core/interfaces/dropdown-option.interface';
+import {Platform} from '../../../core/interfaces/dropdown-option.interface';
+import {PreviewStateFacade} from '../../../core/state/facades/preview-state.facade';
+import {map, Observable} from 'rxjs';
+import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-dropdown',
-  imports: [MatIconModule],
+  imports: [MatIconModule, AsyncPipe],
   templateUrl: './dropdown.component.html',
-  styleUrl: './dropdown.component.scss'
+  styleUrl: './dropdown.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent {
-  public isOpenDropdown: boolean;
-  public selectedOption: DropdownOption;
+  @Input() set position(position: number) {
+    if (position >= 0) {
+      this.selectedOption$ = this._previewFacade.selectLinkByPosition(position)
+        .pipe(map(linkData => linkData.platform));
+    }
+  }
 
-  public readonly DROPDOWN_OPTIONS: DropdownOption[] = [
+  @Output() public selectedOptionEmitter: EventEmitter<Platform>;
+
+  public isOpenDropdown: WritableSignal<boolean>;
+  public selectedOption$!: Observable<Platform>;
+
+  private _previewFacade: PreviewStateFacade = inject(PreviewStateFacade);
+
+  public readonly DROPDOWN_OPTIONS: Platform[] = [
     {iconKey: 'pi-github', label: 'GitHub', color: 'black'},
     {iconKey: 'pi-youtube', label: 'Youtube', color: 'red'},
     {iconKey: 'pi-linkedin', label: 'Linkedin', color: 'blue'},
   ];
 
   constructor() {
-    this.isOpenDropdown = false;
-    this.selectedOption = {
-      iconKey: 'pi-link',
-      label: 'Dropdown Field Active',
-      color: 'white',
-    };
+    this.selectedOptionEmitter = new EventEmitter<Platform>();
+    this.isOpenDropdown = signal<boolean>(false);
   }
 
   public toggleDropdown(): void {
-    this.isOpenDropdown = !this.isOpenDropdown;
+    this.isOpenDropdown.update((isOpen) => !isOpen)
   }
 
-  public selectOption(option: DropdownOption): void {
-    this.selectedOption = option;
-    this.isOpenDropdown = false;
+  public selectOption(option: Platform, event: MouseEvent): void {
+    this.selectedOptionEmitter.emit(option);
+    this.isOpenDropdown.set(false);
+    event.stopPropagation();
   }
 }

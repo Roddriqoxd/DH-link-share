@@ -1,41 +1,35 @@
-import {Component, OnInit} from '@angular/core';
-import {DropdownOption} from '../../../core/interfaces/dropdown-option.interface';
+import {Component, inject, Input} from '@angular/core';
+import {LinkData} from '../../../core/interfaces/dropdown-option.interface';
+import {PreviewStateFacade} from '../../../core/state/facades/preview-state.facade';
+import {map, Observable} from 'rxjs';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-preview-phone',
-  imports: [],
+  imports: [
+    CommonModule,
+  ],
   templateUrl: './preview-phone.component.html',
   styleUrl: './preview-phone.component.scss'
 })
-export class PreviewPhoneComponent implements OnInit {
+export class PreviewPhoneComponent {
+  @Input() previewView: boolean;
 
-  public linksOption: DropdownOption[] = [
-    {iconKey: 'pi-github', label: 'GitHub', color: 'black'},
-    {iconKey: 'pi-youtube', label: 'Youtube', color: 'red'},
-    {iconKey: 'pi-linkedin', label: 'Linkedin', color: 'blue'},
-  ];
+  public imageSrc$: Observable<string>;
+  public firstname$: Observable<string>;
+  public lastName$: Observable<string>;
+  public email$: Observable<string>;
+  public linksState$: Observable<LinkData[]>;
 
-  private _LINK_DEFAULT: DropdownOption = {
-    color: 'var(--grey-border-color)',
-    label: '',
-    iconKey: '',
-  }
+  private _previewFacade: PreviewStateFacade = inject(PreviewStateFacade);
 
   constructor() {
-    this.linksOption.push(this._LINK_DEFAULT)
-    this.linksOption.push(this._LINK_DEFAULT)
-  }
-
-  ngOnInit() {
-    // this.updateLinksOption()
-  }
-
-  private updateLinksOption(): void {
-    if (this.linksOption.length < 5) {
-      const linksNumber = 5 - this.linksOption.length;
-      for (let i = 0; i < linksNumber; i++) {
-        this.linksOption.push(this._LINK_DEFAULT)
-      }
-    }
+    this.previewView = false;
+    this.imageSrc$ = this._previewFacade.selectPhotoUrl()
+      .pipe(map(key => localStorage.getItem(key) || ''))
+    this.firstname$ = this._previewFacade.selectName();
+    this.lastName$ = this._previewFacade.selectLastName();
+    this.email$ = this._previewFacade.selectEmail();
+    this.linksState$ = this._previewFacade.selectPreviewLinks();
   }
 }

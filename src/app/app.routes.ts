@@ -14,7 +14,6 @@ export const routes: Routes = [
   {
     path: 'preview',
     loadChildren: () => import('./modules/preview/preview.routes').then(m => m.PREVIEW_ROUTES),
-    canActivate: [authGuard],
   },
   {
     path: '**',

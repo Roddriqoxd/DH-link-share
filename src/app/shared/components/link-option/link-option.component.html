@@ -3,23 +3,38 @@
     <div class="link--header__title">
       <i class="pi pi-bars"></i>
 
-      <h2>Link #1</h2>
+      <h2>Link {{index}}</h2>
     </div>
 
-    <h3>Remove</h3>
+    <h3 (click)="removeItem()">Remove</h3>
   </div>
 
   <div class="link--field">
     <div class="form--input">
       <label>platform</label>
 
-      <app-dropdown></app-dropdown>
+      <app-dropdown [position]="index" (selectedOptionEmitter)="selectedOption($event)"></app-dropdown>
     </div>
 
     <div class="form--input">
       <label>link</label>
 
-      <input id="email" type="email" placeholder="e.g. https://www.github.com/johnappleseed" [icon]="'add_link'" inputIcon/>
+        <input id="email"
+               type="email"
+               placeholder="e.g. https://www.github.com/johnappleseed"
+               [icon]="'add_link'"
+               [isInvalidValue]="isInvalid()"
+               [formControl]="inputForm"
+               [disabledMessageError]="true"
+               (blur)="updateLink()"
+               inputIcon/>
+      @if (hasErrorByName('required')) {
+        <h4 class="error--input">Can’t be empty</h4>
+      }
+
+      @if (hasErrorByName('pattern')) {
+        <h4 class="error--input">Please check the URL</h4>
+      }
     </div>
   </div>
 </section>
