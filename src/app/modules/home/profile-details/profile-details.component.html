@@ -16,13 +16,14 @@
       <div class="profile--input__container" (click)="fileInput.click()">
         <div class="profile--input__image">
           <div class="profile--input__upload">
-            <i class="pi pi-image"></i>
-            <h2>+ Upload Image</h2>
+            <i class="pi pi-image" [class.image--loaded]="imageSrc"></i>
+            <h2 [class.image--loaded]="imageSrc">+ Upload Image</h2>
           </div>
 
           @if (imageSrc) {
-            <img [src]="imageSrc"
-                 alt="Profile Image"/>
+            <div>
+              <img [src]="imageSrc" alt="User profile picture"/>
+            </div>
           }
         </div>
 

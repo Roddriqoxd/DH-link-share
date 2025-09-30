@@ -52,10 +52,18 @@
 
         i {
           font-size: 30px;
+
+          &.image--loaded {
+            color: var(--white-color) !important;
+          }
         }
 
         h2 {
           color: var(--primary-purple-color);
+
+          &.image--loaded {
+            color: var(--white-color) !important;
+          }
         }
       }
     }
