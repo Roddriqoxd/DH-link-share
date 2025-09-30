@@ -8,8 +8,42 @@
   background-color: var(--light-grey-color);
   border-radius: 12px;
 
+  h1 {
+    text-align: center;
+  }
+
   h3 {
     width: 488px;
     text-align: center;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1000px) {
+  .message--container {
+    gap: 10px;
+
+    img {
+      width: 200px;
+    }
+
+    h3 {
+      width: auto;
+      text-align: center;
+    }
+  }
+}
+
+@media (min-width: 0px) and (max-width: 600px) {
+  .message--container {
+    gap: 5px;
+
+    img {
+      width: 100px;
+    }
+
+    h3 {
+      width: auto;
+      text-align: center;
+    }
   }
 }

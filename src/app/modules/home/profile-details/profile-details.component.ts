@@ -56,7 +56,10 @@ export class ProfileDetailsComponent {
 
       if (file.size > 1024 * 1024) {
         this._previewFacade.setPhotoUrl('')
-        alert('The maximum size is 1MB');
+        this._globalEvent.openMessageModal({
+          message: 'The maximum size is 1MB',
+          isOpen: true,
+        })
         return;
       }
       const base64 = await this._convertToBase64(file);
