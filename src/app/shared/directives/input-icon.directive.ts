@@ -5,7 +5,6 @@ import {Directive, ElementRef, inject, Input, OnDestroy, OnInit, Renderer2} from
 })
 export class InputIconDirective implements OnInit, OnDestroy {
   @Input() public icon: string;
-  @Input() public disabledMessageError!: boolean;
 
   @Input() public set isInvalidValue(isError: boolean | undefined) {
     if (isError) {
@@ -15,19 +14,9 @@ export class InputIconDirective implements OnInit, OnDestroy {
     }
   }
 
-  @Input() public set isRequiredMessage(message: boolean) {
-    if (message) {
-      this._messageError = 'Can’t be empty'
-    } else {
-      this._messageError = 'Please check again'
-    }
-  }
-
   private _el: ElementRef = inject(ElementRef)
   private _renderer: Renderer2 = inject(Renderer2)
   private _inputContainerElement: HTMLDivElement | undefined;
-  private _messageErrorElement: HTMLSpanElement | undefined;
-  private _messageError: string = 'Please check again';
 
   public constructor() {
     this.icon = '';
@@ -40,7 +29,6 @@ export class InputIconDirective implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._inputContainerElement = undefined;
-    this._messageErrorElement = undefined;
   }
 
   private _initialize(): void {
@@ -62,21 +50,9 @@ export class InputIconDirective implements OnInit, OnDestroy {
 
   private _setMessageError(): void {
     this._renderer.addClass(this._inputContainerElement, 'error');
-    if (!this.disabledMessageError) {
-      const errorMessage = this._renderer.createText(this._messageError);
-
-      this._messageErrorElement = this._renderer.createElement('span');
-      this._renderer.addClass(this._messageErrorElement, 'error__message');
-      this._renderer.appendChild(this._messageErrorElement, errorMessage);
-      this._renderer.appendChild(this._inputContainerElement, this._messageErrorElement);
-    }
   }
 
   private _removeMessageError(): void {
     this._renderer.removeClass(this._inputContainerElement, 'error');
-
-    if (this._inputContainerElement && this._messageErrorElement) {
-      this._renderer.removeChild(this._inputContainerElement, this._messageErrorElement);
-    }
   }
 }

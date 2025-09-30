@@ -8,9 +8,24 @@
              placeholder="e.g. alex@gmail.com"
              [formControlName]="'email'"
              [icon]="'pi-envelope'"
-             [isRequiredMessage]="hasErrorByName('email', 'required')"
              [isInvalidValue]="isInvalid('email')"
              inputIcon/>
+
+      @if (hasErrorByName('email', 'required')) {
+        <h4 class="error--input">Can’t be empty</h4>
+      }
+
+      @if (hasErrorByName('email', 'duplicated')) {
+        <h4 class="error--input">This email is already registered</h4>
+      }
+
+      @if (hasErrorByName('email', 'email')) {
+        <h4 class="error--input">Invalid email</h4>
+      }
+
+      @if (hasErrorByName('email', 'authentication')) {
+        <h4 class="error--input">Invalid email or password</h4>
+      }
     </div>
 
     <div class="form--input">
@@ -21,9 +36,20 @@
              placeholder="Enter your password"
              [formControlName]="'password'"
              [icon]="'pi-lock'"
-             [isRequiredMessage]="hasErrorByName('password', 'required')"
              [isInvalidValue]="isInvalid('password')"
              inputIcon/>
+
+      @if (hasErrorByName('password', 'required')) {
+        <h4 class="error--input">Can’t be empty</h4>
+      }
+
+      @if (hasErrorByName('password', 'minlength')) {
+        <h4 class="error--input">A minimum of 8 characters is required</h4>
+      }
+
+      @if (hasErrorByName('email', 'authentication')) {
+        <h4 class="error--input">Invalid email or password</h4>
+      }
     </div>
 
     <button class="btn--primary w-full">Login</button>

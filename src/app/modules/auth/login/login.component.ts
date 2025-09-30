@@ -42,8 +42,8 @@ export default class LoginComponent {
       .pipe(take(1))
       .subscribe((isLogged) => {
         if (!isLogged) {
-          this.loginForm.get('email')?.setErrors({login: true})
-          this.loginForm.get('password')?.setErrors({login: true})
+          this.loginForm.get('email')?.setErrors({authentication: true})
+          this.loginForm.get('password')?.setErrors({authentication: true})
         }
       })
   }
@@ -55,6 +55,7 @@ export default class LoginComponent {
 
   public hasErrorByName(name: string, error: string): boolean {
     const control = this.loginForm.get(name);
+    console.log(control)
     return !!(control && control.hasError(error) && control.touched);
   }
 }

@@ -27,7 +27,7 @@ import {GlobalEventsService} from '../../../core/services/global-events.service'
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export default class RegisterComponent {
   private _formBuilder: FormBuilder = inject(FormBuilder);
@@ -49,7 +49,7 @@ export default class RegisterComponent {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
 
-    return password === confirmPassword ? null : {passwordsMismatch: true};
+    return password === confirmPassword ? null : {notMach: true};
   }
 
   public registerUser(): void {
@@ -69,12 +69,7 @@ export default class RegisterComponent {
           })
           this._router.navigate(['/auth/login']);
         } else {
-          this._globalEvent.openMessageModal({
-            message: 'duplicate user',
-            isOpen: true,
-            icon: 'pi-users'
-          })
-          this.registerForm.reset();
+          this.registerForm.get('email')?.setErrors({duplicated: true})
         }
       })
   }

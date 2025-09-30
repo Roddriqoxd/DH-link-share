@@ -8,9 +8,21 @@
              placeholder="e.g. alex@gmail.com"
              [icon]="'pi-envelope'"
              [formControlName]="'email'"
-             [isRequiredMessage]="hasErrorByName('email', 'required')"
              [isInvalidValue]="isInvalid('email')"
              inputIcon/>
+
+      @if (hasErrorByName('email', 'required')) {
+        <h4 class="error--input">Can’t be empty</h4>
+      }
+
+      @if (hasErrorByName('email', 'email')) {
+        <h4 class="error--input">Invalid email</h4>
+      }
+
+      @if (hasErrorByName('email', 'duplicated')) {
+        <h4 class="error--input">This email is already registered</h4>
+      }
+
     </div>
 
     <div class="form--input">
@@ -21,9 +33,16 @@
              placeholder="At least 8 characters"
              [icon]="'pi-lock'"
              [formControlName]="'password'"
-             [isRequiredMessage]="hasErrorByName('password', 'required')"
              [isInvalidValue]="isInvalid('password')"
              inputIcon/>
+
+      @if (hasErrorByName('password', 'required')) {
+        <h4 class="error--input">Can’t be empty</h4>
+      }
+
+      @if (hasErrorByName('password', 'minlength')) {
+        <h4 class="error--input">A minimum of 8 characters is required</h4>
+      }
     </div>
 
     <div class="form--input">
@@ -34,9 +53,16 @@
              placeholder="At least 8 characters"
              [icon]="'pi-unlock'"
              [formControlName]="'confirmPassword'"
-             [isRequiredMessage]="hasErrorByName('confirmPassword', 'required')"
-             [isInvalidValue]="isInvalid('confirmPassword')"
+             [isInvalidValue]="isInvalid('confirmPassword') || registerForm.hasError('notMach') && registerForm.get('confirmPassword')?.touched"
              inputIcon/>
+
+      @if (hasErrorByName('confirmPassword', 'required')) {
+        <h4 class="error--input">Can’t be empty</h4>
+      } @else if (hasErrorByName('confirmPassword', 'minlength')) {
+        <h4 class="error--input">A minimum of 8 characters is required</h4>
+      } @else if (registerForm.hasError('notMach') && registerForm.get('confirmPassword')?.touched) {
+        <h4 class="error--input">Passwords do not match</h4>
+      }
     </div>
 
     <h4>Password must contains at least 8 characters</h4>
