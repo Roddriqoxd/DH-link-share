@@ -28,7 +28,9 @@
 
   <div class="links--container" [class.disabled--height]="previewView">
     @for (link of links; track index; let index = $index) {
-      <div class="link--item" [style.backgroundColor]="link.platform.color">
+      <div class="link--item"
+           [style.backgroundColor]="link.platform.color"
+           (click)="openURL(link.link)">
         <div class="link--item__info">
           <i class="pi {{link.platform.iconKey}}"></i>
 

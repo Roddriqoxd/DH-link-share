@@ -33,4 +33,8 @@ export class PreviewPhoneComponent {
     this.email$ = this._previewFacade.selectEmail();
     this.linksState$ = this._previewFacade.selectPreviewLinks();
   }
+
+  public openURL(url: string): void {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
 }
