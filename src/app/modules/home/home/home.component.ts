@@ -6,7 +6,7 @@ import {PreviewStore} from '../../../core/state/preview-state.store';
 import {PreviewStateFacade} from '../../../core/state/facades/preview-state.facade';
 import {Observable, startWith} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
-import {TabState} from '../../../core/state/models/preview-state.model';
+import {TabState} from '../../../core/state/store/preview-state.model';
 import {ProfileDetailsComponent} from '../profile-details/profile-details.component';
 import {RouterLink} from '@angular/router';
 

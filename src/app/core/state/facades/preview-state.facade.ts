@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {PreviewStore} from '../preview-state.store';
 import {map, Observable} from 'rxjs';
 import {DropPosition, LinkData, LinkDataUpdate} from '../../interfaces/dropdown-option.interface';
-import {PreviewState, TabState} from '../models/preview-state.model';
+import {PreviewState, TabState} from '../store/preview-state.model';
 
 @Injectable({providedIn: 'root'})
 export class PreviewStateFacade {

@@ -1,4 +1,4 @@
-import {PreviewState} from '../state/models/preview-state.model';
+import {PreviewState} from '../state/store/preview-state.model';
 
 export function saveTabsToStorage(state: PreviewState): void {
   const stateStorage = localStorage.getItem('state');
