@@ -1,5 +1,5 @@
 <section class="preview">
-  @if (isPreviewMode) {
+  @if (!isSharedLink) {
     <header class="preview--header">
       <button [routerLink]="'/home'" class="btn--secondary">Back to editor</button>
 
@@ -7,7 +7,7 @@
     </header>
   }
 
-  <div class="preview--phone">
+  <div class="preview--phone" [class.viewer]="isSharedLink">
     <app-preview-phone [previewView]="true"></app-preview-phone>
   </div>
 

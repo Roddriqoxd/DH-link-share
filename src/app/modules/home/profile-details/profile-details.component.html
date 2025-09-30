@@ -44,7 +44,6 @@
                placeholder="e.g. John"
                [isInvalidValue]="isInvalid('firsName')"
                [formControlName]="'firsName'"
-               [disabledMessageError]="true"
                (blur)="saveInputValue('firsName')"
                inputIcon>
 
@@ -60,7 +59,6 @@
                placeholder="e.g. Appleseed"
                [isInvalidValue]="isInvalid('lastName')"
                [formControlName]="'lastName'"
-               [disabledMessageError]="true"
                (blur)="saveInputValue('lastName')"
                inputIcon>
 
@@ -76,7 +74,6 @@
                placeholder="e.g. email@example.com"
                [isInvalidValue]="isInvalid('email')"
                [formControlName]="'email'"
-               [disabledMessageError]="true"
                (blur)="saveInputValue('email')"
                inputIcon>
 

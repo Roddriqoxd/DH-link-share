@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {AuthFormContainerComponent} from '../../../shared/components/auth-form/auth-form-container.component';
 import {InputIconDirective} from '../../../shared/directives/input-icon.directive';
 import {RouterLink} from '@angular/router';
@@ -16,7 +16,8 @@ import {take} from 'rxjs';
     ReactiveFormsModule
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class LoginComponent {
   private _formBuilder: FormBuilder = inject(FormBuilder);
@@ -41,8 +42,8 @@ export default class LoginComponent {
       .pipe(take(1))
       .subscribe((isLogged) => {
         if (!isLogged) {
-          this.loginForm.get('email')?.setErrors({login: true})
-          this.loginForm.get('password')?.setErrors({login: true})
+          this.loginForm.get('email')?.setErrors({authentication: true})
+          this.loginForm.get('password')?.setErrors({authentication: true})
         }
       })
   }
@@ -54,6 +55,7 @@ export default class LoginComponent {
 
   public hasErrorByName(name: string, error: string): boolean {
     const control = this.loginForm.get(name);
+    console.log(control)
     return !!(control && control.hasError(error) && control.touched);
   }
 }

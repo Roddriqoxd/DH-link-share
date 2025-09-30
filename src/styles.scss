@@ -1,4 +1,3 @@
-@use '@angular/material' as mat;
 @use './styles/variables' as *;
 @use './styles/typography' as *;
 @use './styles/button' as *;
@@ -9,7 +8,7 @@ body {
   margin: 0;
 }
 
-div, form, section {
+div, form, section, article, main, header {
   box-sizing: border-box;
 }
 

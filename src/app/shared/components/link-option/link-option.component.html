@@ -22,10 +22,9 @@
         <input id="email"
                type="email"
                placeholder="e.g. https://www.github.com/johnappleseed"
-               [icon]="'add_link'"
+               [icon]="'pi-link'"
                [isInvalidValue]="isInvalid()"
                [formControl]="inputForm"
-               [disabledMessageError]="true"
                (blur)="updateLink()"
                inputIcon/>
       @if (hasErrorByName('required')) {

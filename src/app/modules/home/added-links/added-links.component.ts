@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
 import {StartedMessageComponent} from '../../../shared/components/started-message/started-message.component';
 import {PreviewStateFacade} from '../../../core/state/facades/preview-state.facade';
 import {LinkData} from '../../../core/interfaces/dropdown-option.interface';
@@ -22,7 +22,8 @@ import {GlobalEventsService} from '../../../core/services/global-events.service'
   styleUrl: './added-links.component.scss',
   host: {
     style: 'height: 100%',
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddedLinksComponent implements OnInit {
   public linksState$: Observable<LinkData[]>;

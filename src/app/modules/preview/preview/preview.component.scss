@@ -45,9 +45,32 @@
     margin-top: -90px;
     z-index: 1;
 
+    &.viewer {
+      margin-top: 0;
+    }
+
     app-preview-phone {
       background-color: var(--white-color);
       border-radius: 24px;
+    }
+  }
+}
+
+@media (min-width: 0px) and (max-width: 600px) {
+  .preview {
+    background-color: var(--white-color);
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: var(--white-color);
+      position: absolute;
+      height: 357px;
+      opacity: 1;
+      border-radius: 0 0 32px 32px;
     }
   }
 }

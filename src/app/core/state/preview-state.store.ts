@@ -1,8 +1,8 @@
 import {Inject, Injectable} from '@angular/core';
-import {INITIAL_PREVIEW_STATE, PreviewState, TabState} from './models/preview-state.model';
-import {DropPosition, LinkData, LinkDataUpdate} from '../interfaces/dropdown-option.interface';
+import {INITIAL_PREVIEW_STATE, PreviewState, TabState} from './store/preview-state.model';
 import {ComponentStore} from '@ngrx/component-store';
-import {moveItemInArray} from '@angular/cdk/drag-drop';
+import * as Updaters from './store/preview.reducers';
+import * as Selectors from './store/preview.selectors';
 
 @Injectable()
 export class PreviewStore extends ComponentStore<PreviewState> {
@@ -18,69 +18,23 @@ export class PreviewStore extends ComponentStore<PreviewState> {
     super(INITIAL_STATE);
   }
 
-  readonly allState$ = this.select(state => state);
-  readonly tabActive$ = this.select(state => state.tabActive);
-  readonly links$ = this.select(state => state.linksData);
-  readonly name$ = this.select(state => state.name);
-  readonly lastName$ = this.select(state => state.lastName);
-  readonly email$ = this.select(state => state.email);
-  readonly photoUrl$ = this.select(state => state.photoUrl)
+  readonly allState$ = this.select(Selectors.selectAllState);
+  readonly tabActive$ = this.select(Selectors.selectTabActive);
+  readonly links$ = this.select(Selectors.selectLinks);
+  readonly name$ = this.select(Selectors.selectName);
+  readonly lastName$ = this.select(Selectors.selectLastName);
+  readonly email$ = this.select(Selectors.selectEmail);
+  readonly photoUrl$ = this.select(Selectors.selectPhotoUrl);
 
-  readonly setName = this.updater((state, name: string) => ({
-    ...state,
-    name,
-  }));
-
-  readonly setLastName = this.updater((state, lastName: string) => ({
-    ...state,
-    lastName,
-  }));
-
-  readonly setEmail = this.updater((state, email: string) => ({
-    ...state,
-    email,
-  }));
-
-  readonly setPhotoUrl = this.updater((state, photoUrl: string) => ({
-    ...state,
-    photoUrl,
-  }));
-
-  readonly updatePlatformByPosition = this.updater((state, {position, platform, link}: LinkDataUpdate) => ({
-      ...state,
-      linksData: state.linksData.map((linkData, index) => {
-        if (index === position) {
-          platform && (linkData.platform = platform);
-          link && (linkData.link = link);
-          return linkData
-        } else {
-          return linkData
-        }
-      }),
-    })
-  );
-
-  readonly setTabState = this.updater((state, tab: TabState) => ({
-    ...state,
-    tabActive: tab,
-  }));
-
-  readonly addLink = this.updater((state, link: LinkData) => ({
-    ...state,
-    linksData: [...state.linksData, link]
-  }));
-
-  readonly removePlatformByPosition = this.updater((state, position: number) => ({
-    ...state,
-    linksData: state.linksData.filter((link, index) => index !== position)
-  }));
-
-  readonly updateLinksPosition = this.updater((state, {previousIndex, currentIndex}: DropPosition) => {
-      const linksData = [...state.linksData];
-      moveItemInArray(linksData, previousIndex, currentIndex);
-      return {...state, linksData};
-    }
-  );
+  readonly setName = this.updater(Updaters.setName);
+  readonly setLastName = this.updater(Updaters.setLastName);
+  readonly setEmail = this.updater(Updaters.setEmail);
+  readonly setPhotoUrl = this.updater(Updaters.setPhotoUrl);
+  readonly updatePlatformByPosition = this.updater(Updaters.updatePlatformByPosition);
+  readonly setTabState = this.updater(Updaters.setTabState);
+  readonly addLink = this.updater(Updaters.addLink);
+  readonly removePlatformByPosition = this.updater(Updaters.removePlatformByPosition);
+  readonly updateLinksPosition = this.updater(Updaters.updateLinksPosition);
 
   readonly resetState = this.updater(() => INITIAL_PREVIEW_STATE);
 }

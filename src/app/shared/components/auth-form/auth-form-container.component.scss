@@ -25,3 +25,18 @@
     }
   }
 }
+
+@media (min-width: 0px) and (max-width: 500px) {
+  .auth--container {
+    background-color: var(--white-color);
+
+    .auth--section--container {
+      width: 100%;
+
+      .auth--main__title {
+        justify-content: start;
+        padding-left: 40px;
+      }
+    }
+  }
+}

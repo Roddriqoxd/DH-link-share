@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {AuthFormContainerComponent} from "../../../shared/components/auth-form/auth-form-container.component";
 import {InputIconDirective} from "../../../shared/directives/input-icon.directive";
 import {Router, RouterLink} from '@angular/router';
@@ -13,6 +13,7 @@ import {
 } from '@angular/forms';
 import {AuthService} from '../../../core/services/auth.service';
 import {take} from 'rxjs';
+import {GlobalEventsService} from '../../../core/services/global-events.service';
 
 @Component({
   selector: 'app-register',
@@ -25,11 +26,13 @@ import {take} from 'rxjs';
     ReactiveFormsModule
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export default class RegisterComponent {
   private _formBuilder: FormBuilder = inject(FormBuilder);
   private _authService: AuthService = inject(AuthService);
+  private _globalEvent: GlobalEventsService = inject(GlobalEventsService);
   private _router: Router = inject(Router);
 
   public registerForm: FormGroup;
@@ -46,7 +49,7 @@ export default class RegisterComponent {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
 
-    return password === confirmPassword ? null : {passwordsMismatch: true};
+    return password === confirmPassword ? null : {notMach: true};
   }
 
   public registerUser(): void {
@@ -59,11 +62,14 @@ export default class RegisterComponent {
       .pipe(take(1))
       .subscribe(userCreated => {
         if (userCreated) {
-          alert('Created successfully');
+          this._globalEvent.openMessageModal({
+            message: 'Created successfully',
+            isOpen: true,
+            icon: 'pi-save'
+          })
           this._router.navigate(['/auth/login']);
         } else {
-          alert('That user has already been created');
-          this.registerForm.reset();
+          this.registerForm.get('email')?.setErrors({duplicated: true})
         }
       })
   }

@@ -1,4 +1,4 @@
-import {PreviewState} from '../state/models/preview-state.model';
+import {PreviewState} from '../state/store/preview-state.model';
 import {LinkData} from '../interfaces/dropdown-option.interface';
 
 export function validatePreviewState(state: PreviewState): string[] {

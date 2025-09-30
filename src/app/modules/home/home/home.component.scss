@@ -17,6 +17,10 @@
       display: flex;
       align-items: center;
       gap: 10px;
+
+      i {
+        font-size: 0;
+      }
     }
 
     nav {
@@ -55,8 +59,28 @@
   background-color: var(--white-color);
 }
 
-@media (min-width: 500px) and (max-width: 1000px) {
+@media (min-width: 600px) and (max-width: 1000px) {
   .main--preview {
     display: none !important;
   }
+  .home--main__container {
+    .main--custom {
+      background-color: #FF3939;
+    }
+  }
+}
+
+@media (min-width: 0px) and (max-width: 600px) {
+  .main--preview {
+    display: none !important;
+  }
+
+    button {
+      gap: 0;
+      font-size: 0;
+
+      i {
+        font-size: 16px !important;
+      }
+    }
 }

@@ -29,7 +29,7 @@ import {GlobalEventsService} from '../../../core/services/global-events.service'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class PreviewComponent {
-  public isPreviewMode: boolean;
+  public isSharedLink: boolean;
 
   private _urlBase: string;
   private _identifier: string;
@@ -37,7 +37,7 @@ export default class PreviewComponent {
   private _route: ActivatedRoute = inject(ActivatedRoute);
 
   constructor() {
-    this.isPreviewMode = !this._route.snapshot.paramMap.get('id');
+    this.isSharedLink = !!this._route.snapshot.paramMap.get('id');
     this._identifier = generateRandomIdentifier();
     this._urlBase = `${window.location.origin}/preview/${this._identifier}`
   }
